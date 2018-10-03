@@ -17,18 +17,16 @@ end
 
 class RegistrationInteractor < ActionInteractor::Base
   def execute
-    if params[:name]
-      @result[:user] = User.new(name: params[:name])
-      # complecated business logic
-      @success = true
-    end
-    @proceeded = true
+    return unless params[:name]
+    add_result(:user, User.new(name: params[:name]))
+    # complicated business logic
+    finish!
   end
 end
 
 interactor = RegistrationInteractor.execute(params)
 interactor.success?   # => true
-interactor.proceeded? # => true
+interactor.completed? # => true
 user = interactor.result[:user]
 user.name # => 'John'
 ```

@@ -4,19 +4,16 @@ module ActionInteractor
 
     def initialize(params)
       @params = params
-      @proceeded = false
-      @success = false
-      @result = {}
+      reset!
     end
 
     def execute
-      return if @proceeded == true
-      @proceeded = true
-      @success = true
+      return if completed?
+      finish!
     end
 
-    def proceeded?
-      @proceeded
+    def completed?
+      @completed
     end
 
     def success?
@@ -25,6 +22,37 @@ module ActionInteractor
 
     def failure?
       !success?
+    end
+
+    def reset!
+      @result = {}
+      fail!
+      incomplete!
+    end
+
+    def finish!
+      success!
+      complete!
+    end
+
+    def success!
+      @success = true
+    end
+
+    def fail!
+      @success = false
+    end
+
+    def complete!
+      @completed = true
+    end
+
+    def incomplete!
+      @completed = false
+    end
+
+    def add_result(key, value)
+      @result[key] = value
     end
 
     class << self

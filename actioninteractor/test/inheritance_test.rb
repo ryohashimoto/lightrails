@@ -1,5 +1,4 @@
 require "test/unit"
-require "pry"
 require_relative "../lib/base.rb"
 
 class User
@@ -12,11 +11,9 @@ end
 
 class RegistrationInteractor < ActionInteractor::Base
   def execute
-    if params[:name]
-      @result[:user] = User.new(name: params[:name])
-      @success = true
-    end
-    @proceeded = true
+    return unless params[:name]
+    add_result(:user, User.new(name: params[:name]))
+    finish!
   end
 end
 
@@ -51,9 +48,9 @@ class InheritanceTest < Test::Unit::TestCase
     assert interactor.success?
   end
 
-  test "#proceeded? is true" do
+  test "#completed? is true" do
     params = { name: 'John'}
     interactor = RegistrationInteractor.execute(params)
-    assert interactor.proceeded?
+    assert interactor.completed?
   end
 end
