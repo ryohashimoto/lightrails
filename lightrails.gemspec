@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "lightrails"
   s.version     = version
-  s.date        = "2018-10-03"
+  s.date        = "2018-10-04"
   s.summary     = "Utility library for Ruby on Rails"
   s.description = "Lightrails is a utility library including ActionInteractor, ActiveRepresenter etc. for Ruby on Rails."
 

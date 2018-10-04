@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "actioninteractor"
   s.version     = version
-  s.date        = "2018-10-03"
+  s.date        = "2018-10-04"
   s.summary     = "Action Interactor provides a simple interface for performing operations (part of Lightrails)."
   s.description = "Action Interactor provides a simple interface for performing operations like Service Object / Command pattern."
 
