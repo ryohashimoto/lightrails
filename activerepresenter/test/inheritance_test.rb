@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/base.rb"
+require "activerepresenter"
 require "ostruct"
 
 class UserRepresenter < ActiveRepresenter::Base

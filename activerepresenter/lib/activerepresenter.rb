@@ -1,1 +1,1 @@
-require 'activerepresenter/base'
+require "base"

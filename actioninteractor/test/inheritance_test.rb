@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/base.rb"
+require "actioninteractor"
 
 class User
   attr_accessor :name

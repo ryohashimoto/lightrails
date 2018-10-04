@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative "../lib/base.rb"
+require "activerepresenter"
 
 class BaseTest < Test::Unit::TestCase
   test ".new does not raise error" do

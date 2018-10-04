@@ -1,1 +1,1 @@
-require 'actioninteractor/base'
+require "base"
