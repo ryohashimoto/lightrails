@@ -1,0 +1,7 @@
+<% module_namespacing do -%>
+class <%= class_name %>Interactor < ApplicationInteractor
+  def execute
+    super
+  end
+end
+<% end -%>
