@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 version = File.read(File.expand_path("../LIGHTRAILS_VERSION", __dir__)).strip
+date = File.read(File.expand_path("../LIGHTRAILS_RELEASE_DATE", __dir__)).strip
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "activerepresenter"
   s.version     = version
-  s.date        = "2018-10-04"
+  s.date        = date
   s.summary     = "Active Representer provides model objects by decorating hash-like objects (part of Lightrails)."
   s.description = "Active Representer provides model objects for web applications by decorating hash-like objects."
 
