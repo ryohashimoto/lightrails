@@ -2,6 +2,21 @@
 
 Utility library for Ruby on Rails
 
+## Getting Started
+
+Add `lightrails` to your Rails project's Gemfile and `bundle install`.
+
+```ruby
+gem "lightrails"
+```
+
+Run generators.
+
+```
+$ bin/rails generate action_interactor:install
+$ bin/rails generate active_representer:install
+```
+
 ## Action Interactor
 
 Add a standarized service layer to your Rails application.
@@ -24,11 +39,17 @@ class RegistrationInteractor < ActionInteractor::Base
   end
 end
 
-interactor = RegistrationInteractor.execute(params)
+interactor = RegistrationInteractor.execute(name: "John")
 interactor.success?   # => true
 interactor.completed? # => true
 user = interactor.result[:user]
 user.name # => 'John'
+```
+
+To create an interactor, you can use the generator.
+
+```
+$ bin/rails generate interactor registration
 ```
 
 ## Active Representer
@@ -42,7 +63,17 @@ class UserRepresenter < ActiveRepresenter::Base
   end
 end
 
-user = OpenStruct.new(first_name: 'John', last_name: 'Appleseed')
+user = OpenStruct.new(first_name: "John", last_name: "Appleseed")
 representer = UserRepresenter.new(user)
 representer.full_name # => 'John Appleseed'
 ```
+
+To create a representer, you can use the generator.
+
+```
+$ bin/rails generate representer use
+```
+
+## License
+
+MIT Licence. Copyright 2018 Ryo Hashimoto.
