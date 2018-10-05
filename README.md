@@ -71,7 +71,7 @@ representer.full_name # => 'John Appleseed'
 To create a representer, you can use the generator.
 
 ```
-$ bin/rails generate representer use
+$ bin/rails generate representer user
 ```
 
 ## License
