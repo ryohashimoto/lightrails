@@ -1,6 +1,7 @@
 # Lightrails
 
-Utility library for Ruby on Rails
+Lightrails is a utility library including Action Interactor, Active Representer etc.  
+It aims to provide more modular layers for Ruby on Rails applications.
 
 ## Getting Started
 
@@ -76,4 +77,4 @@ $ bin/rails generate representer user
 
 ## License
 
-MIT Licence. Copyright 2018 Ryo Hashimoto.
+MIT License. Copyright 2018 Ryo Hashimoto.

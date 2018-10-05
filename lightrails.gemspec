@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name        = "lightrails"
   s.version     = version
   s.date        = date
-  s.summary     = "Utility library for Ruby on Rails"
-  s.description = "Lightrails is a utility library including ActionInteractor, ActiveRepresenter etc. for Ruby on Rails."
+  s.summary     = "Utility library including Action Interactor, Active Representer etc. (for Ruby on Rails)"
+  s.description = "Lightrails is a utility library including Action Interactor, Active Representer etc. It aims to provide more modular layers for Ruby on Rails applications."
 
   s.required_ruby_version     = ">= 2.2.2"
   s.required_rubygems_version = ">= 1.8.11"

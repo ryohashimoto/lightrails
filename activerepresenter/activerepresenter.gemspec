@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name        = "activerepresenter"
   s.version     = version
   s.date        = date
-  s.summary     = "Active Representer provides model objects by decorating hash-like objects (part of Lightrails)."
-  s.description = "Active Representer provides model objects for web applications by decorating hash-like objects."
+  s.summary     = "Active Representer provides model objects by decorating objects (part of Lightrails)."
+  s.description = "Active Representer provides model objects for web applications by decorating objects."
 
   s.required_ruby_version     = ">= 2.2.2"
   s.required_rubygems_version = ">= 1.8.11"
