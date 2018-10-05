@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-version = File.read(File.expand_path("LIGHTRAILS_VERSION", __dir__)).strip
-date = File.read(File.expand_path("LIGHTRAILS_RELEASE_DATE", __dir__)).strip
+version = File.read(File.expand_path("VERSION", __dir__)).strip
+date = File.read(File.expand_path("RELEASE_DATE", __dir__)).strip
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.email       = "ryohashimoto@gmail.com"
   s.homepage    = "https://github.com/ryohashimoto/lightrails"
 
-  s.files       = ["README.md"]
+  s.files       = ["lib/**/*", "LICENSE", "README.md", "RELEASE_DATE", "VERSION"]
 
   s.add_dependency "rails", ">= 5.1"
   s.add_dependency "actioninteractor",  version

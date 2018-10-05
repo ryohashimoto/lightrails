@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-version = File.read(File.expand_path("../LIGHTRAILS_VERSION", __dir__)).strip
-date = File.read(File.expand_path("../LIGHTRAILS_RELEASE_DATE", __dir__)).strip
+version = File.read(File.expand_path("../VERSION", __dir__)).strip
+date = File.read(File.expand_path("../RELEASE_DATE", __dir__)).strip
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
