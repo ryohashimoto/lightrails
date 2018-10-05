@@ -11,12 +11,10 @@ Add `lightrails` to your Rails project's Gemfile and `bundle install`.
 gem "lightrails"
 ```
 
-Run generators.
+Run the generator.
 
 ```
-$ bin/rails generate action_facade:install
-$ bin/rails generate action_interactor:install
-$ bin/rails generate active_representer:install
+$ bin/rails generate lightrails:install
 ```
 
 ## Action Facade
