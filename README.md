@@ -14,8 +14,42 @@ gem "lightrails"
 Run generators.
 
 ```
+$ bin/rails generate action_facade:install
 $ bin/rails generate action_interactor:install
 $ bin/rails generate active_representer:install
+```
+
+## Action Facade
+
+Add a simple interface for obtaining multiple data in controller.
+
+```ruby
+class Mypage::IndexFacade < ApplicationFacade
+  attr_reader :current_user
+
+  def initialize(params)
+    @current_user = params[:current_user]
+  end
+
+  def active_user
+    @all_user ||= User.active.order(login_at: :desc).limit(10)
+  end
+
+  def messages
+    @messages ||= current_user.messages.order(created_at: :desc).limit(10)
+  end
+end
+
+# in MypageController
+def index
+  @facade = Mypage::IndexFacade.new(current_user: current_user)
+end
+```
+
+To create an facade, you can use the generator.
+
+```
+$ bin/rails generate facade mypage/index
 ```
 
 ## Action Interactor
@@ -31,7 +65,7 @@ class User
   end
 end
 
-class RegistrationInteractor < ActionInteractor::Base
+class RegistrationInteractor < ApplicationInteractor
   def execute
     return unless params[:name]
     add_result(:user, User.new(name: params[:name]))
@@ -58,7 +92,7 @@ $ bin/rails generate interactor registration
 Add an API model layer to your Rails application.
 
 ```ruby
-class UserRepresenter < ActiveRepresenter::Base
+class UserRepresenter < ApplicationRepresenter
   def full_name
     "#{first_name} #{last_name}"
   end
