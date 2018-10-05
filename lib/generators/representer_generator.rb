@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module ActiveRepresenter
+module Rails
   module Generators
     class RepresenterGenerator < ::Rails::Generators::NamedBase
       source_root File.expand_path("../templates", __FILE__)
