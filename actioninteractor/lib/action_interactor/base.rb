@@ -35,6 +35,11 @@ module ActionInteractor
       complete!
     end
 
+    def failed!
+      fail!
+      complete!
+    end
+
     def success!
       @success = true
     end

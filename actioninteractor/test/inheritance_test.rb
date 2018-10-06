@@ -11,7 +11,7 @@ end
 
 class RegistrationInteractor < ActionInteractor::Base
   def execute
-    return unless params[:name]
+    return failed! unless params[:name]
     add_result(:user, User.new(name: params[:name]))
     finish!
   end
@@ -50,6 +50,18 @@ class InheritanceTest < Test::Unit::TestCase
 
   test "#completed? is true" do
     params = { name: 'John'}
+    interactor = RegistrationInteractor.execute(params)
+    assert interactor.completed?
+  end
+
+  test "if params is empty, #failure? is true" do
+    params = {}
+    interactor = RegistrationInteractor.execute(params)
+    assert interactor.failure?
+  end
+
+  test "if params is empty, #completed? is true" do
+    params = {}
     interactor = RegistrationInteractor.execute(params)
     assert interactor.completed?
   end
