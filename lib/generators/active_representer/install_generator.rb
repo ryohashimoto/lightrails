@@ -5,7 +5,11 @@ module ActiveRepresenter
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_application_representer_file
-        template "application_representer.rb", File.join("app/representers/application_representer.rb")
+        template "app/representers/application_representer.rb"
+      end
+
+      def create_concerns_directory
+        create_file "app/representers/concerns/.keep"
       end
     end
   end

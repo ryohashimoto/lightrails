@@ -5,7 +5,11 @@ module ActionFacade
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_application_facade_file
-        template "application_facade.rb", File.join("app/facades/application_facade.rb")
+        template "app/facades/application_facade.rb"
+      end
+
+      def create_concerns_directory
+        create_file "app/facades/concerns/.keep"
       end
     end
   end

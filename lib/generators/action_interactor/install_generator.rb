@@ -5,7 +5,11 @@ module ActionInteractor
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_application_interactor_file
-        template "application_interactor.rb", File.join("app/interactors/application_interactor.rb")
+        template "app/interactors/application_interactor.rb"
+      end
+
+      def create_concerns_directory
+        create_file "app/interactors/concerns/.keep"
       end
     end
   end
