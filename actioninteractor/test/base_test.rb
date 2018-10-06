@@ -30,4 +30,11 @@ class BaseTest < Test::Unit::TestCase
     interactor = ActionInteractor::Base.execute(params)
     assert interactor.completed?
   end
+
+  test "#aborted? is true after #abort!" do
+    params = {}
+    interactor = ActionInteractor::Base.execute(params)
+    interactor.abort!
+    assert interactor.aborted?
+  end
 end

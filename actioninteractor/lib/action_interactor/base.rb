@@ -16,12 +16,20 @@ module ActionInteractor
       @completed
     end
 
+    def incomplete?
+      !completed?
+    end
+
     def success?
       @success
     end
 
     def failure?
       !success?
+    end
+
+    def aborted?
+      failure? && incomplete?
     end
 
     def reset!
@@ -38,6 +46,11 @@ module ActionInteractor
     def failed!
       fail!
       complete!
+    end
+
+    def abort!
+      fail!
+      incomplete!
     end
 
     def success!
