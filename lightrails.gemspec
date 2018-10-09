@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.files       = Dir["lib/**/*", "LICENSE", "README.md", "RELEASE_DATE", "VERSION"]
 
-  s.add_dependency "rails", ">= 5.1"
+  s.add_dependency "railties", ">= 5.1", "< 6"
   s.add_dependency "actionfacade",  version
   s.add_dependency "actioninteractor",  version
   s.add_dependency "activerepresenter", version
