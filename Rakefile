@@ -2,6 +2,7 @@
 
 require "bundler/setup"
 require "bundler/gem_tasks"
+require "rake/testtask"
 
 desc "Build all gems (lightrails, actionfacade, actioninteractor etc.)."
 task :build_all do
@@ -32,4 +33,20 @@ task :push_all do
     end
   end
   sh "gem push pkg/lightrails-#{version}.gem"
+end
+
+Rake::TestTask.new { |t|
+  t.libs << "test"
+  t.pattern = "test/**/*_test.rb"
+  t.warning = true
+  t.verbose = true
+  t.ruby_opts = ["--dev"] if defined?(JRUBY_VERSION)
+}
+
+namespace :test do
+  task :isolated do
+    Dir.glob("test/**/*_test.rb").all? do |file|
+      sh(Gem.ruby, "-w", "-Ilib:test", file)
+    end || raise("Failures")
+  end
 end

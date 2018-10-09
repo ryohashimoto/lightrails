@@ -20,7 +20,8 @@ Gem::Specification.new do |s|
   s.email       = "ryohashimoto@gmail.com"
   s.homepage    = "https://github.com/ryohashimoto/lightrails"
 
-  s.files       = Dir["lib/**/*", "LICENSE", "README.md", "RELEASE_DATE", "VERSION"]
+  s.files       = Dir["lib/**/*", "test/**/*", "LICENSE", "README.md", "RELEASE_DATE", "VERSION"]
+  s.test_files  = s.files.grep(/^test/)
 
   s.add_dependency "railties", ">= 5.1", "< 6"
   s.add_dependency "actionfacade",  version
