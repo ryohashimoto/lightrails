@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActionInteractor
   class Base
     attr_reader :params, :result

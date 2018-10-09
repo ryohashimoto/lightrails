@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module ActiveRepresenter
   module Generators
     class InstallGenerator < Rails::Generators::Base
