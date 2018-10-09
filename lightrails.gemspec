@@ -27,5 +27,5 @@ Gem::Specification.new do |s|
   s.add_dependency "actioninteractor",  version
   s.add_dependency "activerepresenter", version
 
-  s.add_dependency "bundler",         ">= 1.3.0"
+  s.add_dependency "bundler", ">= 1.3", "< 2"
 end
