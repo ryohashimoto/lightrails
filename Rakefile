@@ -21,3 +21,14 @@ task :clean_all do
   end
   Rake::Task["clean"].invoke
 end
+
+desc "Push all built gems."
+task :push_all do
+  version = File.read(File.expand_path("VERSION", __dir__)).strip
+  %w[actionfacade actioninteractor activerepresenter].each do |repository_name|
+    Dir.chdir(repository_name) do
+      sh "gem push pkg/#{repository_name}-#{version}.gem"
+    end
+  end
+  sh "gem push pkg/lightrails-#{version}.gem"
+end
