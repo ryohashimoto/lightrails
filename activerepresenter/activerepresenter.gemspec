@@ -24,6 +24,6 @@ Gem::Specification.new do |s|
   s.test_files  = s.files.grep(/^test/)
 
   s.add_dependency "bundler", "~> 1.3"
-  s.add_dependency "activesupport", ">= 5.1"
+  s.add_dependency "activesupport", ">= 5.1", "< 6"
   s.add_development_dependency "rake", "~> 0"
 end
