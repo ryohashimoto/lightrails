@@ -10,20 +10,25 @@ module ActionInteractor
     end
 
     def execute
-      return if completed?
-      finish!
+      # if the interactor already finished execution, do nothing.
+      return if finished?
+      # if contract is not satisfied= (ex: params is empty), mark as failed.
+      return fail! if params.nil?
+      # implement some codes
+      # if finished execution, mark as success.
+      success!
     end
 
-    def completed?
-      @completed
+    def finished?
+      @_finished
     end
 
-    def incomplete?
-      !completed?
+    def unfinished?
+      !finished?
     end
 
     def success?
-      @success
+      @_success
     end
 
     def failure?
@@ -31,44 +36,29 @@ module ActionInteractor
     end
 
     def aborted?
-      failure? && incomplete?
+      failure? && unfinished?
     end
 
     def reset!
       @result = {}
-      fail!
-      incomplete!
-    end
-
-    def finish!
-      success!
-      complete!
-    end
-
-    def failed!
-      fail!
-      complete!
+      @_success = false
+      @_finished = false
     end
 
     def abort!
-      fail!
-      incomplete!
+      @_success = false
+      @_finished = false
     end
 
     def success!
-      @success = true
+      @_success = true
+      @_finished = true
     end
+    alias_method :finish!, :success!
 
     def fail!
-      @success = false
-    end
-
-    def complete!
-      @completed = true
-    end
-
-    def incomplete!
-      @completed = false
+      @_success = false
+      @_finished = true
     end
 
     def add_result(key, value)
