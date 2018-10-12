@@ -65,16 +65,16 @@ end
 
 class RegistrationInteractor < ApplicationInteractor
   def execute
-    return unless params[:name]
+    return fail! unless params[:name]
     add_result(:user, User.new(name: params[:name]))
     # complicated business logic
-    finish!
+    success!
   end
 end
 
 interactor = RegistrationInteractor.execute(name: "John")
 interactor.success?   # => true
-interactor.completed? # => true
+interactor.finished?  # => true
 user = interactor.result[:user]
 user.name # => 'John'
 ```
