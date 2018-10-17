@@ -123,7 +123,7 @@ user = OpenStruct.new(
   activities: [OpenStruct.new(created_at: Time.now)]
 )
 
-representer = UserRepresenter.new(user)
+representer = UserRepresenter.wrap(user)
 representer.full_name # => 'John Appleseed'
 activity = representer.activities.first
 activity.class # => ActivityRepresenter

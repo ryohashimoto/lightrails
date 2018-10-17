@@ -1,32 +1,39 @@
 # frozen_string_literal: true
 
-require "active_support/core_ext/class/attribute"
-require "active_support/core_ext/module/delegation"
-require "active_support/inflector"
+require "active_model"
+require "active_support"
 
 module ActiveRepresenter
   class Base
-    attr_reader :wrapped
+    include ActiveModel::Model
+    include ActiveModel::Attributes
+
+    attribute :wrapped
     class_attribute :collections, default: {}
 
     delegate_missing_to :wrapped
 
-    def initialize(wrapped)
-      @wrapped = wrapped
-      self.class.collection_names.each do |collection_name|
-        next if wrapped[collection_name].nil?
-        representer = self.class.collections[collection_name]
-        collection_value = \
-          if representer
-            wrapped[collection_name].map { |item| representer.new(item) }
-          else
-            wrapped[collection_name]
-          end
-        instance_variable_set("@#{collection_name}", collection_value)
-      end
-    end
-
     class << self
+      def wrap(wrapped)
+        instance = new
+        instance.wrapped = wrapped
+        collection_names.each do |collection_name|
+          next if wrapped[collection_name].nil?
+          representer_klass = collections[collection_name]
+          collection_value = \
+            if representer_klass
+              wrapped[collection_name].map { |item| representer_klass.wrap(item) }
+            else
+              wrapped[collection_name]
+            end
+          instance.instance_variable_set("@#{collection_name}", collection_value)
+        end
+        attribute_names.each do |attribute_name|
+          instance.send("#{attribute_name}=", wrapped.send(attribute_name))
+        end
+        instance
+      end
+
       def attr_collection(name, **options)
         unless name.is_a?(Symbol) || name.is_a?(String)
           raise ArgumentError.new("collection's name must be a Symbol or a String")
@@ -47,6 +54,10 @@ module ActiveRepresenter
 
       def collection_names
         collections.keys
+      end
+
+      def attribute_names
+        attribute_types.keys - ["wrapped"]
       end
 
       def guess_representrer_name(name)

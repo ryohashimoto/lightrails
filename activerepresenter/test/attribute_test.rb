@@ -3,6 +3,9 @@ require "ostruct"
 require_relative "../lib/active_representer/base.rb"
 
 class UserRepresenter < ActiveRepresenter::Base
+  attribute :first_name, :string
+  attribute :last_name, :string
+
   def full_name
     "#{first_name} #{last_name}"
   end
