@@ -29,8 +29,8 @@ class Mypage::IndexFacade < ApplicationFacade
     @current_user = params[:current_user]
   end
 
-  def active_user
-    @all_user ||= User.active.order(login_at: :desc).limit(10)
+  def active_users
+    @active_users ||= User.active.order(login_at: :desc).limit(10)
   end
 
   def messages
@@ -42,6 +42,18 @@ end
 def index
   @facade = Mypage::IndexFacade.new(current_user: current_user)
 end
+```
+
+```erb
+<%# in View %>
+
+<% @facade.active_users.each do |user| %>
+  ...
+<% end %>
+
+<% @facade.messages.each do |user| %>
+  ...
+<% end %>
 ```
 
 ファサードを作成するには、ジェネレーターを使用することができます。
