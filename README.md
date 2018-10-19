@@ -87,7 +87,8 @@ $ bin/rails generate interactor registration
 
 ## Active Representer
 
-Add an API model layer to your Rails application.
+Add 'represented' model layer to your Rails application.  
+You can wrap hash-like (OpenStruct, Hashie::Mash etc.) objects like below.
 
 ```ruby
 class ActivityRepresenter < ActiveRepresenter::Base
@@ -121,6 +122,7 @@ To create a representer, you can use the generator.
 
 ```
 $ bin/rails generate representer user
+$ bin/rails g representer activity
 ```
 
 ## License
