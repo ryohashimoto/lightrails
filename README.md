@@ -90,15 +90,31 @@ $ bin/rails generate interactor registration
 Add an API model layer to your Rails application.
 
 ```ruby
+class ActivityRepresenter < ActiveRepresenter::Base
+  def created_on
+    created_at.to_date
+  end
+end
+
 class UserRepresenter < ApplicationRepresenter
+  attr_collection :activities
+
   def full_name
     "#{first_name} #{last_name}"
   end
 end
 
-user = OpenStruct.new(first_name: "John", last_name: "Appleseed")
+user = OpenStruct.new(
+  first_name: 'John',
+  last_name: 'Appleseed',
+  activities: [OpenStruct.new(created_at: Time.now)]
+)
+
 representer = UserRepresenter.new(user)
 representer.full_name # => 'John Appleseed'
+activity = representer.activities.first
+activity.class # => ActivityRepresenter
+activity.created_on # => returns current date
 ```
 
 To create a representer, you can use the generator.
