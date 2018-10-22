@@ -5,6 +5,7 @@ require_relative "../lib/active_representer/base.rb"
 class UserRepresenter < ActiveRepresenter::Base
   attribute :first_name, :string
   attribute :last_name, :string
+  attribute :age, :integer
 
   def full_name
     "#{first_name} #{last_name}"
@@ -39,5 +40,11 @@ class InheritanceTest < Test::Unit::TestCase
     user = OpenStruct.new(first_name: 'John', last_name: 'Appleseed')
     representer = UserRepresenter.wrap(user)
     assert_equal(representer.full_name, 'John Appleseed')
+  end
+
+  test "#age returns 30" do
+    user = OpenStruct.new(first_name: 'John', last_name: 'Appleseed', age: 30)
+    representer = UserRepresenter.wrap(user)
+    assert_equal(representer.age, 30)
   end
 end
