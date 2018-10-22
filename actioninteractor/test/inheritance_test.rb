@@ -1,5 +1,5 @@
 require "test/unit"
-require "actioninteractor"
+require_relative "../lib/action_interactor/base.rb"
 
 class User
   attr_accessor :name
@@ -11,11 +11,20 @@ end
 
 class RegistrationInteractor < ActionInteractor::Base
   def execute
-    return failed! unless params[:name]
+    return fail! unless params[:name]
     add_result(:user, User.new(name: params[:name]))
     finish!
   end
 end
+
+class NotificationInteractor < ActionInteractor::Base
+  def execute
+    return fail! unless params[:name] || params[:email]
+    results(name: params[:name], email: params[:email])
+    finish!
+  end
+end
+
 
 class InheritanceTest < Test::Unit::TestCase
   test ".execute does not raise error" do
@@ -48,10 +57,10 @@ class InheritanceTest < Test::Unit::TestCase
     assert interactor.success?
   end
 
-  test "#completed? is true" do
+  test "#finished? is true" do
     params = { name: 'John'}
     interactor = RegistrationInteractor.execute(params)
-    assert interactor.completed?
+    assert interactor.finished?
   end
 
   test "if params is empty, #failure? is true" do
@@ -60,9 +69,18 @@ class InheritanceTest < Test::Unit::TestCase
     assert interactor.failure?
   end
 
-  test "if params is empty, #completed? is true" do
+  test "if params is empty, #finished? is true" do
     params = {}
     interactor = RegistrationInteractor.execute(params)
-    assert interactor.completed?
+    assert interactor.finished?
+  end
+
+  test "the result user name is Taro and email is taro@example.com" do
+    params = { name: 'Taro', email: 'taro@example.com'}
+    interactor = NotificationInteractor.execute(params)
+    name = interactor.result[:name]
+    assert_equal(name, 'Taro')
+    email = interactor.result[:email]
+    assert_equal(email, 'taro@example.com')
   end
 end

@@ -65,6 +65,10 @@ module ActionInteractor
       @result[key] = value
     end
 
+    def results(items = {})
+      @result = items
+    end
+
     class << self
       def execute(params)
         new(params).tap(&:execute)

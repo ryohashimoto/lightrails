@@ -25,10 +25,10 @@ class BaseTest < Test::Unit::TestCase
     assert interactor.success?
   end
 
-  test "#completed? is true" do
+  test "#finished? is true" do
     params = {}
     interactor = ActionInteractor::Base.execute(params)
-    assert interactor.completed?
+    assert interactor.finished?
   end
 
   test "#aborted? is true after #abort!" do
