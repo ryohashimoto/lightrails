@@ -38,20 +38,26 @@ class Mypage::IndexFacade < ApplicationFacade
   end
 end
 
-# in MypageController
-def index
-  @facade = Mypage::IndexFacade.new(current_user: current_user)
+class MypageController < ApplicationController
+  # for using #retrieve method
+  include ActionFacade::Retrieval
+
+  def index
+    facade = Mypage::IndexFacade.new(current_user: current_user)
+    # assign instance variables
+    retrieve(facade, :active_users, :messages)
+  end
 end
 ```
 
 ```erb
 <%# in View %>
 
-<% @facade.active_users.each do |user| %>
+<% @active_users.each do |user| %>
   ...
 <% end %>
 
-<% @facade.messages.each do |user| %>
+<% @messages.each do |user| %>
   ...
 <% end %>
 ```
@@ -78,8 +84,9 @@ end
 class RegistrationInteractor < ApplicationInteractor
   def execute
     return fail! unless params[:name]
-    add_result(:user, User.new(name: params[:name]))
     # complicated business logic
+    # set results
+    results(user: User.new(name: params[:name]))
     success!
   end
 end
@@ -103,13 +110,15 @@ Add 'represented' model layer to your Rails application.
 You can wrap hash-like (OpenStruct, Hashie::Mash etc.) objects like below.
 
 ```ruby
-class ActivityRepresenter < ActiveRepresenter::Base
+class ActivityRepresenter < ApplicationRepresenter
   def created_on
     created_at.to_date
   end
 end
 
 class UserRepresenter < ApplicationRepresenter
+  attribute :first_name, :string
+  attribute :last_name, :string
   attr_collection :activities
 
   def full_name
