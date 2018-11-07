@@ -20,6 +20,11 @@ class UsersController
     facade = UserFacade.new(params)
     retrieve(facade, :john)
   end
+
+  def edit
+    params = {}
+    retrieve_facade :john
+  end
 end
 
 class RetrievalTest < Test::Unit::TestCase
@@ -31,6 +36,13 @@ class RetrievalTest < Test::Unit::TestCase
     controller = UsersController.new
     assert_nil(controller.john)
     controller.show
+    assert_equal(controller.john, { id: 1, name: "john" })
+  end
+
+  test "@john is set after retrieve_facade(:john)" do
+    controller = UsersController.new
+    assert_nil(controller.john)
+    controller.edit
     assert_equal(controller.john, { id: 1, name: "john" })
   end
 end
