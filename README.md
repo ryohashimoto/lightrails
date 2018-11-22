@@ -1,7 +1,7 @@
 # Lightrails
 
 Lightrails is a utility library including Action Interactor, Active Representer etc.  
-It aims to provide more modular layers for Ruby on Rails applications.
+It aims to provide more modular structures for Ruby on Rails applications.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ $ bin/rails generate lightrails:install
 
 ## Action Facade
 
-Add a simple interface for obtaining multiple data in controller.
+Add a simple interface for obtaining multiple data used in a view.
 
 ```ruby
 class Mypage::IndexFacade < ApplicationFacade
@@ -70,7 +70,7 @@ $ bin/rails generate facade mypage/index
 
 ## Action Interactor
 
-Add a standarized service layer to your Rails application.
+Add standarized dara processing units to your Rails application.
 
 ```ruby
 class User
@@ -106,8 +106,9 @@ $ bin/rails generate interactor registration
 
 ## Active Representer
 
-Add 'represented' model layer to your Rails application.  
-You can wrap hash-like (OpenStruct, Hashie::Mash etc.) objects like below.
+Add 'represented' models to your Rails application.
+It can be used with API responses.
+You can wrap hash-like objects (OpenStruct, Hashie::Mash etc.) like below.
 
 ```ruby
 class ActivityRepresenter < ApplicationRepresenter
