@@ -34,6 +34,10 @@ module ActiveRepresenter
         instance
       end
 
+      def attr_field(name, type = Type::Value.new, **options)
+        attribute(name, type, **options)
+      end
+
       def attr_collection(name, **options)
         unless name.is_a?(Symbol) || name.is_a?(String)
           raise ArgumentError.new("collection's name must be a Symbol or a String")

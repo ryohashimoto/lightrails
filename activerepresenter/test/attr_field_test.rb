@@ -3,16 +3,16 @@ require "ostruct"
 require_relative "../lib/active_representer/base.rb"
 
 class UserRepresenter < ActiveRepresenter::Base
-  attribute :first_name, :string
-  attribute :last_name, :string
-  attribute :age, :integer
+  attr_field :first_name, :string
+  attr_field :last_name, :string
+  attr_field :age, :integer
 
   def full_name
     "#{first_name} #{last_name}"
   end
 end
 
-class InheritanceTest < Test::Unit::TestCase
+class AttrFieldTest < Test::Unit::TestCase
   test ".wrap does not raise error" do
     user = OpenStruct.new(first_name: 'John', last_name: 'Appleseed')
     assert_nothing_raised { UserRepresenter.wrap(user) }
