@@ -118,8 +118,8 @@ class ActivityRepresenter < ApplicationRepresenter
 end
 
 class UserRepresenter < ApplicationRepresenter
-  attribute :first_name, :string
-  attribute :last_name, :string
+  attr_field :first_name, :string
+  attr_field :last_name, :string
   attr_collection :activities
 
   def full_name
