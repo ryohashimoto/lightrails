@@ -18,7 +18,7 @@ class UserRepresenter < ActiveRepresenter::Base
   end
 end
 
-class CollectionTest < Test::Unit::TestCase
+class AttrCollectionTest < Test::Unit::TestCase
   test ".wrap does not raise error" do
     user = OpenStruct.new(first_name: 'John', last_name: 'Appleseed')
     assert_nothing_raised { UserRepresenter.wrap(user) }
