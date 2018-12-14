@@ -86,7 +86,7 @@ class RegistrationInteractor < ApplicationInteractor
     return fail! unless params[:name]
     # 複雑なビジネスロジックを記述
     # 結果をセットする
-    results(user: User.new(name: params[:name]))
+    results.add(:user, User.new(name: params[:name]))
     success!
   end
 end
@@ -94,7 +94,7 @@ end
 interactor = RegistrationInteractor.execute(name: "John")
 interactor.success?   # => true
 interactor.finished?  # => true
-user = interactor.result[:user]
+user = interactor.results[:user]
 user.name # => 'John'
 ```
 

@@ -2,7 +2,7 @@
 
 module ActionInteractor
   class Base
-    attr_reader :params, :result
+    attr_reader :params, :results
 
     def initialize(params)
       @params = params
@@ -40,7 +40,7 @@ module ActionInteractor
     end
 
     def reset!
-      @result = {}
+      @results = Results.new
       @_success = false
       @_finished = false
     end
@@ -54,19 +54,10 @@ module ActionInteractor
       @_success = true
       @_finished = true
     end
-    alias_method :finish!, :success!
 
     def fail!
       @_success = false
       @_finished = true
-    end
-
-    def add_result(key, value)
-      @result[key] = value
-    end
-
-    def results(items = {})
-      @result = items
     end
 
     class << self

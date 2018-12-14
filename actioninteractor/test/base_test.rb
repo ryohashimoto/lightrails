@@ -1,5 +1,5 @@
 require "test/unit"
-require "actioninteractor"
+require_relative "../lib/actioninteractor"
 
 class BaseTest < Test::Unit::TestCase
   test ".execute does not raise error" do
