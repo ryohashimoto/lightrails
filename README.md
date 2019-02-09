@@ -70,7 +70,7 @@ $ bin/rails generate facade mypage/index
 
 ## Action Interactor
 
-Add standarized dara processing units to your Rails application.
+Add standarized data processing units to your Rails application.
 
 ```ruby
 class User
