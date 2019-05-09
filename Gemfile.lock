@@ -1,18 +1,18 @@
 PATH
   remote: .
   specs:
-    actionfacade (0.0.15)
+    actionfacade (0.0.16)
       bundler (~> 1.3)
-    actioninteractor (0.0.15)
+    actioninteractor (0.0.16)
       bundler (~> 1.3)
-    activerepresenter (0.0.15)
+    activerepresenter (0.0.16)
       activemodel (>= 5.2, < 6)
       activesupport (>= 5.2, < 6)
       bundler (~> 1.3)
-    lightrails (0.0.15)
-      actionfacade (= 0.0.15)
-      actioninteractor (= 0.0.15)
-      activerepresenter (= 0.0.15)
+    lightrails (0.0.16)
+      actionfacade (= 0.0.16)
+      actioninteractor (= 0.0.16)
+      activerepresenter (= 0.0.16)
       bundler (>= 1.3, < 2)
       railties (>= 5.2, <= 6.0)
 
