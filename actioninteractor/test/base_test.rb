@@ -13,10 +13,10 @@ class BaseTest < Test::Unit::TestCase
     assert_instance_of(ActionInteractor::Base, interactor)
   end
 
-  test "the result is an empty hash" do
+  test "the result is an instance of ActionInteractor::Results" do
     params = {}
     interactor = ActionInteractor::Base.execute(params)
-    assert_equal({}, interactor.result)
+    assert_instance_of(ActionInteractor::Results, interactor.results)
   end
 
   test "#success? is true" do
