@@ -19,6 +19,11 @@ module ActionInteractor
       success!
     end
 
+    def execute!
+      execute
+      success? || raise(ExecutionError.new("Failed to execute the interactor"))
+    end
+
     def finished?
       @_finished
     end
@@ -64,6 +69,12 @@ module ActionInteractor
       def execute(params)
         new(params).tap(&:execute)
       end
+
+      def execute!(params)
+        new(params).tap(&:execute!)
+      end
     end
   end
+
+  class ExecutionError < StandardError; end
 end

@@ -13,6 +13,12 @@ class BaseTest < Test::Unit::TestCase
     assert_instance_of(ActionInteractor::Base, interactor)
   end
 
+  test ".execute! also returns an ActionInteractor::Base instance" do
+    params = {}
+    interactor = ActionInteractor::Base.execute!(params)
+    assert_instance_of(ActionInteractor::Base, interactor)
+  end
+
   test "the result is an instance of ActionInteractor::Results" do
     params = {}
     interactor = ActionInteractor::Base.execute(params)

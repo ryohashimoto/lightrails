@@ -64,6 +64,29 @@ class InheritanceTest < Test::Unit::TestCase
     assert interactor.finished?
   end
 
+  test "if params is empty, .execute returns instance of RegistrationInteractor" do
+    params = {}
+    interactor = RegistrationInteractor.execute(params)
+    assert_instance_of(RegistrationInteractor, interactor)
+  end
+
+  test "if params is empty, #execute! raises a ExecutionError" do
+    params = {}
+    interactor = RegistrationInteractor.new(params)
+    error = assert_raises ActionInteractor::ExecutionError do
+      interactor.execute!
+    end
+    assert_equal "Failed to execute the interactor", error.message
+  end
+
+  test "if params is empty, #execute! raises a ExecutionError" do
+    params = {}
+    error = assert_raises ActionInteractor::ExecutionError do
+      RegistrationInteractor.execute!(params)
+    end
+    assert_equal "Failed to execute the interactor", error.message
+  end
+
   test "if params is empty, #failure? is true" do
     params = {}
     interactor = RegistrationInteractor.execute(params)
