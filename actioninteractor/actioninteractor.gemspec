@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "Action Interactor provides a simple interface for performing operations (part of Lightrails)."
   s.description = "Action Interactor provides a simple interface for performing operations like Service Object / Command pattern."
 
-  s.required_ruby_version     = ">= 2.2.2"
+  s.required_ruby_version     = ">= 2.4.0"
   s.required_rubygems_version = ">= 1.8.11"
 
   s.license       = "MIT"
