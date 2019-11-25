@@ -13,7 +13,7 @@ PATH
       actionfacade (= 0.0.17.1)
       actioninteractor (= 0.0.17.1)
       activerepresenter (= 0.0.17.1)
-      bundler (>= 1.3, < 2)
+      bundler (>= 1.3)
       railties (>= 5.2, < 6.1)
 
 GEM
