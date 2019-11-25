@@ -23,6 +23,6 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split($/)
   s.test_files  = s.files.grep(/^test/)
 
-  s.add_dependency "bundler", "~> 1.3"
+  s.add_dependency "bundler", ">= 1.3"
   s.add_development_dependency "rake", "~> 0"
 end
