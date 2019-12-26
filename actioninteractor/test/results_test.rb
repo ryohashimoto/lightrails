@@ -32,4 +32,13 @@ class ResultsTest < Test::Unit::TestCase
     assert_equal(info[1], [:bar, "bar"])
     assert_equal(info[2], [:baz, "baz"])
   end
+
+  test "get result by the key name's method" do
+    results = ActionInteractor::Results.new
+    assert_raises ::NoMethodError do
+      results.foo
+    end
+    results.add(:foo, "bar")
+    assert_equal(results.foo, "bar")
+  end
 end

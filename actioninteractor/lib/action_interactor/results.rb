@@ -34,5 +34,15 @@ module ActionInteractor
         yield attribute, results[attribute]
       end
     end
+
+    def method_missing(attribute, *)
+      # Define shortcut methods for each result key.
+      # It returns the result for the key
+      if results.has_key?(attribute)
+        results[attribute]
+      else
+        super
+      end
+    end
   end
 end
