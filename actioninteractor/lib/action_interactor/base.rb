@@ -2,18 +2,18 @@
 
 module ActionInteractor
   class Base
-    attr_reader :params, :results
+    attr_reader :payload, :results
 
-    def initialize(params)
-      @params = params
+    def initialize(payload)
+      @payload = payload
       reset!
     end
 
     def execute
       # if the interactor already finished execution, do nothing.
       return if finished?
-      # if contract is not satisfied= (ex: params is empty), mark as failed.
-      return fail! if params.nil?
+      # if contract is not satisfied= (ex: payload is empty), mark as failed.
+      return fail! if payload.nil?
       # implement some codes
       # if finished execution, mark as success.
       success!
@@ -66,12 +66,12 @@ module ActionInteractor
     end
 
     class << self
-      def execute(params)
-        new(params).tap(&:execute)
+      def execute(payload)
+        new(payload).tap(&:execute)
       end
 
-      def execute!(params)
-        new(params).tap(&:execute!)
+      def execute!(payload)
+        new(payload).tap(&:execute!)
       end
     end
   end
