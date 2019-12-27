@@ -11,7 +11,10 @@ end
 
 class RegistrationInteractor < ActionInteractor::Base
   def execute
-    return fail! unless payload[:name]
+    unless payload[:name]
+      errors.add(:name, "can't be blank.")
+      return fail!
+    end
     results.add(:user, User.new(name: payload[:name]))
     success!
   end
@@ -19,7 +22,9 @@ end
 
 class NotificationInteractor < ActionInteractor::Base
   def execute
-    return fail! unless payload[:name] || payload[:email]
+    errors.add(:name, "can't be blank.") unless payload[:name]
+    errors.add(:email, "can't be blank.") unless payload[:email]
+    return fail! if errors.any?
     results.add(:name, payload[:name])
     results.add(:email, payload[:email])
     success!
@@ -98,5 +103,31 @@ class InheritanceTest < Test::Unit::TestCase
     assert_equal(name, 'Taro')
     email = interactor.results[:email]
     assert_equal(email, 'taro@example.com')
+  end
+
+  test "if none is given, the registration and notification will fail." do
+    payload = {}
+    registration = RegistrationInteractor.execute(payload)
+    assert registration.failure?
+    assert registration.errors.any?
+    assert_equal(registration.errors.to_hash, { name: "can't be blank." })
+    assert_equal(registration.errors.messages, ["name can't be blank."])
+    notification = NotificationInteractor.execute(payload)
+    assert notification.failure?
+    assert notification.errors.any?
+    assert_equal(notification.errors.to_hash, { name: "can't be blank.", email: "can't be blank." })
+    assert_equal(notification.errors.messages, ["name can't be blank.", "email can't be blank."])
+  end
+
+  test "if only the name is given, the registration is successful but the notification is not." do
+    payload = { name: 'Taro' }
+    registration = RegistrationInteractor.execute(payload)
+    assert registration.success?
+    assert registration.errors.empty?
+    notification = NotificationInteractor.execute(payload)
+    assert notification.failure?
+    assert notification.errors.any?
+    assert_equal(notification.errors.to_hash, { email: "can't be blank." })
+    assert_equal(notification.errors.messages, ["email can't be blank."])
   end
 end

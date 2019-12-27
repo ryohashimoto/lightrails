@@ -11,7 +11,7 @@ module ActionInteractor
 
     attr_reader :errors
 
-    def_delegators :@errors, :clear, :keys, :values, :[], :empty?
+    def_delegators :@errors, :clear, :keys, :values, :[], :empty?, :any?
 
     def initialize(*)
       @errors = {}
@@ -32,6 +32,18 @@ module ActionInteractor
     def each
       errors.each_key do |attribute|
         yield attribute, errors[attribute]
+      end
+    end
+
+    # Convert errors to hash.
+    def to_hash
+      errors
+    end
+
+    # Returns array containing error messages.
+    def messages
+      errors.map do |attribute, error|
+        "#{attribute} #{error}"
       end
     end
   end
