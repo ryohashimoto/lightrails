@@ -2,6 +2,14 @@ require "test/unit"
 require_relative "../lib/actioninteractor"
 
 class BaseTest < Test::Unit::TestCase
+  test "initialized successfully" do
+    payload = {}
+    interactor = ActionInteractor::Base.new(payload)
+    assert_equal(interactor.success?, false)
+    assert_equal(interactor.finished?, false)
+    assert_equal(interactor.errors.empty?, true)
+  end
+
   test ".execute does not raise error" do
     payload = {}
     assert_nothing_raised { ActionInteractor::Base.execute(payload) }

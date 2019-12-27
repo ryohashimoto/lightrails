@@ -11,7 +11,7 @@ module ActionInteractor
 
     attr_reader :errors
 
-    def_delegators :@errors, :clear, :keys, :values, :[], :delete
+    def_delegators :@errors, :clear, :keys, :values, :[], :empty?
 
     def initialize(*)
       @errors = {}

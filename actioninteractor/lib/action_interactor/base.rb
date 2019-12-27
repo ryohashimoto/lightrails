@@ -2,10 +2,12 @@
 
 module ActionInteractor
   class Base
-    attr_reader :payload, :results
+    attr_reader :payload, :errors, :results
 
     def initialize(payload)
       @payload = payload
+      @errors = Errors.new
+      @results = Results.new
       reset!
     end
 
@@ -33,7 +35,7 @@ module ActionInteractor
     end
 
     def success?
-      @_success
+      @_success && @errors.empty?
     end
 
     def failure?
@@ -45,7 +47,6 @@ module ActionInteractor
     end
 
     def reset!
-      @results = Results.new
       @_success = false
       @_finished = false
     end
