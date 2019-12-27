@@ -79,14 +79,6 @@ class InheritanceTest < Test::Unit::TestCase
     assert_equal "Failed to execute the interactor", error.message
   end
 
-  test "if payload is empty, #execute! raises a ExecutionError" do
-    payload = {}
-    error = assert_raises ActionInteractor::ExecutionError do
-      RegistrationInteractor.execute!(payload)
-    end
-    assert_equal "Failed to execute the interactor", error.message
-  end
-
   test "if payload is empty, #failure? is true" do
     payload = {}
     interactor = RegistrationInteractor.execute(payload)
