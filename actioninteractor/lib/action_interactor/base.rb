@@ -1,6 +1,27 @@
 # frozen_string_literal: true
 
 module ActionInteractor
+  # == Action \Interactor \Base
+  #
+  # This is a base class for an interactor (data processing unit).
+  # It gets a payload (input) as an initialization parameter and
+  # execute some methods which is described in `execute` method.
+  # After that, the results can be obtained by `results` method.
+  # In Ruby on Rails, it can be used for doing some business logic
+  # like new user registration process. For example inserting user data
+  # in the database and creating a notification message, registering a
+  # job for sending the message.
+  #
+  # class RegistrationInteractor < ActionInteractor::Base
+  #   def execute
+  #     return fail! unless payload[:name]
+  #     user = User.create!(name: payload[:name])
+  #     notiticaion = user.notifications.create!(name: 'Welcome')
+  #     RegistrationNotificationJob.perform_later!
+  #     results.add(:user, user)
+  #     success!
+  #   end
+  # end
   class Base
     attr_reader :payload, :errors, :results
 
