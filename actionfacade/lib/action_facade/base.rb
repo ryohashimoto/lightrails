@@ -2,11 +2,11 @@
 
 module ActionFacade
   class Base
-    attr_reader :params
+    attr_reader :payload
 
-    # pass controller's params by default
-    def initialize(params)
-      @params = params
+    # Initialize with payload
+    def initialize(payload)
+      @payload = payload
     end
   end
 end

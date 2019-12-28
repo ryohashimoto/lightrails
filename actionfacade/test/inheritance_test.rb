@@ -1,5 +1,5 @@
 require "test/unit"
-require "actionfacade"
+require_relative "../lib/actionfacade"
 
 class UserFacade < ActionFacade::Base
   USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "taro" }]
@@ -15,25 +15,25 @@ end
 
 class InheritanceTest < Test::Unit::TestCase
   test ".new does not raise error" do
-    params = {}
-    assert_nothing_raised { UserFacade.new(params) }
+    payload = {}
+    assert_nothing_raised { UserFacade.new(payload) }
   end
 
-  test "#params returns user object" do
-    params = {}
-    facade = UserFacade.new(params)
-    assert_equal(facade.params, params)
+  test "#payload returns user object" do
+    payload = {}
+    facade = UserFacade.new(payload)
+    assert_equal(facade.payload, payload)
   end
 
   test "#all returns all data" do
-    params = {}
-    facade = UserFacade.new(params)
+    payload = {}
+    facade = UserFacade.new(payload)
     assert_equal(facade.all, [{ id: 1, name: "john" }, { id: 2, name: "taro" }])
   end
 
   test "#taro returns taro's data" do
-    params = {}
-    facade = UserFacade.new(params)
+    payload = {}
+    facade = UserFacade.new(payload)
     assert_equal(facade.taro, { id: 2, name: "taro" })
   end
 end

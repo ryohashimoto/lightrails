@@ -1,15 +1,15 @@
 require "test/unit"
-require "actionfacade"
+require_relative "../lib/actionfacade"
 
 class BaseTest < Test::Unit::TestCase
   test ".new does not raise error" do
-    params = {}
-    assert_nothing_raised { ActionFacade::Base.new(params) }
+    payload = {}
+    assert_nothing_raised { ActionFacade::Base.new(payload) }
   end
 
-  test "#params returns original params object" do
-    params = {}
-    facade = ActionFacade::Base.new(params)
-    assert_equal(facade.params, params)
+  test "#payload returns original payload object" do
+    payload = {}
+    facade = ActionFacade::Base.new(payload)
+    assert_equal(facade.payload, payload)
   end
 end

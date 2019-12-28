@@ -16,8 +16,8 @@ class UsersController
   attr_reader :john
 
   def show
-    params = {}
-    facade = UserFacade.new(params)
+    payload = {}
+    facade = UserFacade.new(payload)
     retrieve(facade, :john)
   end
 end
