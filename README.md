@@ -1,6 +1,6 @@
 # Lightrails
 
-Lightrails is a utility library including Action Interactor, Active Representer etc.  
+Lightrails is a utility library including Action Interactor, Active Representer etc.
 It aims to provide more modular structures for Ruby on Rails applications.
 
 ## Getting Started
@@ -25,8 +25,8 @@ Add a simple interface for obtaining multiple data used in a view.
 class Mypage::IndexFacade < ApplicationFacade
   attr_reader :current_user
 
-  def initialize(params)
-    @current_user = params[:current_user]
+  def initialize(payload)
+    @current_user = payload[:current_user]
   end
 
   def active_users
@@ -76,17 +76,17 @@ Add standarized data processing units to your Rails application.
 class User
   attr_accessor :name
 
-  def initialize(params)
-    @name = params[:name]
+  def initialize(payload)
+    @name = payload[:name]
   end
 end
 
 class RegistrationInteractor < ApplicationInteractor
   def execute
-    return fail! unless params[:name]
+    return fail! unless payload[:name]
     # complicated business logic
     # set results
-    results.add(:user, User.new(name: params[:name]))
+    results.add(:user, User.new(name: payload[:name]))
     success!
   end
 end

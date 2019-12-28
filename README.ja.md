@@ -1,6 +1,6 @@
 # Lightrails
 
-Lightrailsは、Action InteractorやActiveRepresenterを含む便利なライブラリで、  
+Lightrailsは、Action InteractorやActiveRepresenterを含む便利なライブラリで、
 Ruby on Railsアプリケーションにより細分化されたレイヤーを追加します。
 
 ## 始める
@@ -25,8 +25,8 @@ $ bin/rails generate lightrails:install
 class Mypage::IndexFacade < ApplicationFacade
   attr_reader :current_user
 
-  def initialize(params)
-    @current_user = params[:current_user]
+  def initialize(payload)
+    @current_user = payload[:current_user]
   end
 
   def active_users
@@ -76,17 +76,17 @@ Railsアプリケーションに標準化されたサービスレイヤー（イ
 class User
   attr_accessor :name
 
-  def initialize(params)
-    @name = params[:name]
+  def initialize(payload)
+    @name = payload[:name]
   end
 end
 
 class RegistrationInteractor < ApplicationInteractor
   def execute
-    return fail! unless params[:name]
+    return fail! unless payload[:name]
     # 複雑なビジネスロジックを記述
     # 結果をセットする
-    results.add(:user, User.new(name: params[:name]))
+    results.add(:user, User.new(name: payload[:name]))
     success!
   end
 end

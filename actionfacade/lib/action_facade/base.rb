@@ -13,8 +13,8 @@ module ActionFacade
   #   class Mypage::IndexFacade < ActionFacade::Base
   #     attr_reader :current_user
   #
-  #     def initialize(params)
-  #       @current_user = params[:current_user]
+  #     def initialize(payload)
+  #       @current_user = payload[:current_user]
   #     end
   #
   #     def active_users
