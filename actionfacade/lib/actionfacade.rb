@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 
-require "action_facade/base"
-require "action_facade/retrieval"
+$:.unshift File.dirname(__FILE__)
+
+module ActionFacade
+  autoload :Base, "action_facade/base"
+  autoload :Retrieval, "action_facade/retrieval"
+end
