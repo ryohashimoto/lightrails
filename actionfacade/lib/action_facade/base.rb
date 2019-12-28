@@ -10,7 +10,7 @@ module ActionFacade
   # to the inherited class.
   # For example
   #
-  #   class Mypage::IndexFacade < ApplicationFacade
+  #   class Mypage::IndexFacade < ActionFacade::Base
   #     attr_reader :current_user
   #
   #     def initialize(params)
