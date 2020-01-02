@@ -2,8 +2,7 @@
 
 ![](https://github.com/ryohashimoto/lightrails/workflows/Ruby/badge.svg)
 
-Lightrailsは、Action InteractorやActiveRepresenterを含む便利なライブラリで、
-Ruby on Railsアプリケーションにより細分化されたレイヤーを追加します。
+LightrailsはRuby on Railsアプリケーションにより細分化された構造を提供するクラス（Action Facade、Action InteractorやActive Representer）を含む便利なライブラリです。
 
 ## 始める
 
