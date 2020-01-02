@@ -11,7 +11,7 @@ module ActionInteractor
 
     attr_reader :results
 
-    def_delegators :@results, :clear, :keys, :values, :[], :delete
+    def_delegators :@results, :clear, :keys, :values, :[]
 
     def initialize(*)
       @results = {}
