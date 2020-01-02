@@ -1,5 +1,7 @@
 # Lightrails
 
+![](https://github.com/ryohashimoto/lightrails/workflows/Ruby/badge.svg)
+
 Lightrails is a utility library including Action Interactor, Active Representer etc.
 It aims to provide more modular structures for Ruby on Rails applications.
 
