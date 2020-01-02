@@ -2,9 +2,9 @@ require "test/unit"
 require_relative "../lib/action_facade/base.rb"
 require_relative "../lib/action_facade/retrieval.rb"
 
-class UserFacade < ActionFacade::Base
-  USER_DATA = [{ id: 1, name: "john" }]
+USER_DATA = [{ id: 1, name: "john" }]
 
+class UserFacade < ActionFacade::Base
   def john
     USER_DATA.find { |user| user[:name] == "john" }
   end
