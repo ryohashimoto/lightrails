@@ -20,12 +20,3 @@ jobs:
     - name: rake test (Lightrails)
       run: |
         bundle exec rake test
-    - name: rake test (Action Facade)
-      run: |
-        bundle exec rake test actionfacade/test
-    - name: rake test (Action Interactor)
-      run: |
-        bundle exec rake test actioninteractor/test
-    - name: rake test (Active Representer)
-      run: |
-        bundle exec rake test activerepresenter/test

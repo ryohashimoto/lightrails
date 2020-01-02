@@ -43,10 +43,15 @@ Rake::TestTask.new { |t|
   t.ruby_opts = ["--dev"] if defined?(JRUBY_VERSION)
 }
 
-namespace :test do
-  task :isolated do
-    Dir.glob("test/**/*_test.rb").all? do |file|
-      sh(Gem.ruby, "-w", "-Ilib:test", file)
-    end || raise("Failures")
+FRAMEWORKS = %w(actionfacade actioninteractor activerepresenter)
+
+%w(test test:isolated).each do |task_name|
+  desc "Run #{task_name} task for all projects"
+  task task_name do
+    errors = []
+    FRAMEWORKS.each do |project|
+      system(%(cd #{project} && #{$0} #{task_name} --trace)) || errors << project
+    end
+    fail("Errors in #{errors.join(', ')}") unless errors.empty?
   end
 end
