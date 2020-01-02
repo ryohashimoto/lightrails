@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency "activerepresenter", version
 
   s.add_dependency "bundler", ">= 1.3"
+  s.add_development_dependency "test-unit", ">= 3.3"
 end
