@@ -23,7 +23,7 @@ module ActionInteractor
   #   end
   # end
   class Base
-    attr_reader :payload, :errors, :results
+    attr_reader :payload, :errors, :results, :state
 
     # Initialize with payload
     # Errors and Results data and initial state will be set.
@@ -31,6 +31,7 @@ module ActionInteractor
       @payload = payload
       @errors = Errors.new
       @results = Results.new
+      @state = State.new
       reset!
     end
 
@@ -40,18 +41,18 @@ module ActionInteractor
       # if the interactor already finished execution, do nothing.
       return if finished?
       # if contract is not satisfied= (ex: payload is empty), mark as failed.
-      return fail! if payload.nil?
+      return failure! if payload.nil?
       # (Implement some codes for the operation.)
 
       # if finished execution, mark as success.
-      success!
+      successful!
     end
 
     # Execute the operation with given payload.
     # If there are some errors, ActionInteractor::ExeuctionError will be raised.
     def execute!
       execute
-      success? || raise(ExecutionError.new("Failed to execute the interactor"))
+      successful? || raise(ExecutionError.new("Failed to execute the interactor"))
     end
 
     # Returns `true` if marked as finished otherwise `false`.
@@ -65,13 +66,15 @@ module ActionInteractor
     end
 
     # Returns `true` if marked as success and there are no errors otherwise `false`.
-    def success?
-      @_success && @errors.empty?
+    def successful?
+      state.successful? && @errors.empty?
     end
+
+    alias_method :success?, :successful?
 
     # Returns `true` if not marked as success or there are some errors otherwise `false`.
     def failure?
-      !success?
+      !successful?
     end
 
     # Returns `true` if the operation was not successful and not finished otherwise `false`.
@@ -81,27 +84,31 @@ module ActionInteractor
 
     # Reset statuses.
     def reset!
-      @_success = false
+      @state = State.new
       @_finished = false
     end
 
     # Mark the operation as failed and unfinished.
     def abort!
-      @_success = false
+      state.failure!
       @_finished = false
     end
 
     # Mark the operation as success and finished.
     def success!
-      @_success = true
+      state.successful!
       @_finished = true
     end
 
+    alias_method :successful!, :success!
+
     # Mask the operation as failed and finished.
-    def fail!
-      @_success = false
+    def failure!
+      state.failure!
       @_finished = true
     end
+
+    alias_method :fail!, :failure!
 
     class << self
       # Execute the operation with given payload.
