@@ -33,7 +33,13 @@ class BaseTest < Test::Unit::TestCase
     assert_instance_of(ActionInteractor::Results, interactor.results)
   end
 
-  test "#success? is true" do
+  test "#successful? is true" do
+    payload = {}
+    interactor = ActionInteractor::Base.execute(payload)
+    assert interactor.successful?
+  end
+
+  test "#success? (alias) is true" do
     payload = {}
     interactor = ActionInteractor::Base.execute(payload)
     assert interactor.success?
@@ -47,7 +53,7 @@ class BaseTest < Test::Unit::TestCase
 
   test "#aborted? is true after #abort!" do
     payload = {}
-    interactor = ActionInteractor::Base.execute(payload)
+    interactor = ActionInteractor::Base.new(payload)
     interactor.abort!
     assert interactor.aborted?
   end

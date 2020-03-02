@@ -86,16 +86,16 @@ end
 
 class RegistrationInteractor < ApplicationInteractor
   def execute
-    return fail! unless payload[:name]
+    return failure! unless payload[:name]
     # complicated business logic
     # set results
     results.add(:user, User.new(name: payload[:name]))
-    success!
+    successful!
   end
 end
 
 interactor = RegistrationInteractor.execute(name: "John")
-interactor.success?   # => true
+interactor.successful?   # => true
 interactor.finished?  # => true
 user = interactor.results[:user]
 user.name # => 'John'

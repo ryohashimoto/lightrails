@@ -13,10 +13,10 @@ class RegistrationInteractor < ActionInteractor::Base
   def execute
     unless payload[:name]
       errors.add(:name, "can't be blank.")
-      return fail!
+      return failure!
     end
     results.add(:user, User.new(name: payload[:name]))
-    success!
+    successful!
   end
 end
 
@@ -24,10 +24,10 @@ class NotificationInteractor < ActionInteractor::Base
   def execute
     errors.add(:name, "can't be blank.") unless payload[:name]
     errors.add(:email, "can't be blank.") unless payload[:email]
-    return fail! if errors.any?
+    return failure! if errors.any?
     results.add(:name, payload[:name])
     results.add(:email, payload[:email])
-    success!
+    successful!
   end
 end
 
@@ -57,10 +57,10 @@ class InheritanceTest < Test::Unit::TestCase
     assert_equal(user.name, 'John')
   end
 
-  test "#success? is true" do
+  test "#successful? is true" do
     payload = { name: 'John'}
     interactor = RegistrationInteractor.execute(payload)
-    assert interactor.success?
+    assert interactor.successful?
   end
 
   test "#finished? is true" do
@@ -122,7 +122,7 @@ class InheritanceTest < Test::Unit::TestCase
   test "if only the name is given, the registration is successful but the notification is not." do
     payload = { name: 'Taro' }
     registration = RegistrationInteractor.execute(payload)
-    assert registration.success?
+    assert registration.successful?
     assert registration.errors.empty?
     notification = NotificationInteractor.execute(payload)
     assert notification.failure?
