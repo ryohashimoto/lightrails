@@ -95,12 +95,12 @@ module ActionInteractor
     end
 
     # Mark the operation as success and finished.
-    def success!
+    def successful!
       state.successful!
       @_finished = true
     end
 
-    alias_method :successful!, :success!
+    alias_method :success!, :successful!
 
     # Mask the operation as failed and finished.
     def failure!

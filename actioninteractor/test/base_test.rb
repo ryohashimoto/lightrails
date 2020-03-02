@@ -1,6 +1,5 @@
 require "test/unit"
 require_relative "../lib/actioninteractor"
-require "pry"
 
 class BaseTest < Test::Unit::TestCase
   test "initialized successfully" do
