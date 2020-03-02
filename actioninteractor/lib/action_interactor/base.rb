@@ -14,12 +14,12 @@ module ActionInteractor
   #
   # class RegistrationInteractor < ActionInteractor::Base
   #   def execute
-  #     return fail! unless payload[:name]
+  #     return failure! unless payload[:name]
   #     user = User.create!(name: payload[:name])
   #     notiticaion = user.notifications.create!(name: 'Welcome')
   #     RegistrationNotificationJob.perform_later!
   #     results.add(:user, user)
-  #     success!
+  #     successful!
   #   end
   # end
   class Base
