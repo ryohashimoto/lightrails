@@ -13,7 +13,7 @@ class ExecutionStateTest < Test::Unit::TestCase
 
   test "default states are :initial, :processing, :successful and :failure" do
     state = ActionInteractor::ExecutionState.new
-    assert_equal(state.states, [:initial, :processing, :successful, :failure])
+    assert_equal(state.states, [:initial, :processing, :successful, :failure, :aborted])
   end
 
   test "default transitions are defined correctly" do
@@ -25,6 +25,7 @@ class ExecutionStateTest < Test::Unit::TestCase
         processing: [:initial],
         successful: [:initial, :processing],
         failure: [:initial, :processing],
+        aborted: [:initial, :processing],
       }
     )
   end
