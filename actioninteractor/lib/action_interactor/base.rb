@@ -32,7 +32,7 @@ module ActionInteractor
       @errors = Errors.new
       @results = Results.new
       @state = State.new
-      reset!
+      @_finished = false
     end
 
     # Execute the operation with given payload.
@@ -40,11 +40,11 @@ module ActionInteractor
     def execute
       # if the interactor already finished execution, do nothing.
       return if finished?
-      # if contract is not satisfied= (ex: payload is empty), mark as failed.
+      # if contract is not satisfied= (ex: payload is empty), mark as failure.
       return failure! if payload.nil?
       # (Implement some codes for the operation.)
 
-      # if finished execution, mark as success.
+      # if finished execution, mark as successful.
       successful!
     end
 
@@ -88,13 +88,13 @@ module ActionInteractor
       @_finished = false
     end
 
-    # Mark the operation as failed and unfinished.
+    # Mark the operation as failure and unfinished.
     def abort!
       state.failure!
       @_finished = false
     end
 
-    # Mark the operation as success and finished.
+    # Mark the operation as successful and finished.
     def successful!
       state.successful!
       @_finished = true
@@ -102,7 +102,7 @@ module ActionInteractor
 
     alias_method :success!, :successful!
 
-    # Mask the operation as failed and finished.
+    # Mask the operation as failure and finished.
     def failure!
       state.failure!
       @_finished = true
