@@ -31,7 +31,7 @@ module ActionInteractor
       @payload = payload
       @errors = Errors.new
       @results = Results.new
-      @state = State.new
+      @state = ExecutionState.new
       @_finished = false
     end
 
