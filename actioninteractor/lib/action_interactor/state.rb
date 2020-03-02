@@ -11,12 +11,12 @@ module ActionInteractor
     ]
 
     # Define default transitions
-    # key: target state, values: original state
+    # key: target state, values: original states
     TRANSITIONS = {
       initial: [:processing],
       processing: [:initial],
-      successful: [:processing],
-      failure: [:processing],
+      successful: [:initial, :processing],
+      failure: [:initial, :processing],
     }
 
     attr_reader :state
