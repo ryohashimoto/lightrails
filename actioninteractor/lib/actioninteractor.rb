@@ -7,4 +7,5 @@ module ActionInteractor
   autoload :Errors, "action_interactor/errors"
   autoload :Results, "action_interactor/results"
   autoload :State, "action_interactor/state"
+  autoload :ExecutionState, "action_interactor/execution_state"
 end

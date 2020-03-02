@@ -3,20 +3,12 @@
 module ActionInteractor
   class State
     # Define default states
-    STATES = [
-      :initial,    # Initial state
-      :processing, # The operation is processing
-      :successful, # The operation is finished successfully
-      :failure,    # The operation is failed
-    ]
+    STATES = [:initial, :finished]
 
     # Define default transitions
-    # key: target state, values: original states
+    # key: target state, value: original states
     TRANSITIONS = {
-      initial: [:processing],
-      processing: [:initial],
-      successful: [:initial, :processing],
-      failure: [:initial, :processing],
+      finished: [:initial]
     }
 
     attr_reader :state
@@ -46,27 +38,39 @@ module ActionInteractor
 
     # Available states for the class
     def self.states
-      STATES
+      self::STATES
     end
 
     # Available transitions for the class
     def self.transitions
-      TRANSITIONS
+      self::TRANSITIONS
     end
 
-    self.states.each do |state_name|
+    def method_missing(method_name, *args)
+      name = method_name.to_s
       # Returns true if state_name is the same as current state
-      define_method("#{state_name}?") do
-        state == state_name
+      if status_method_with_suffix?(name, "?")
+        return state == name.chop.to_sym
       end
 
       # Set current state to the state_name, otherwise raises error
-      define_method("#{state_name}!") do
+      if status_method_with_suffix?(name, "!")
+        state_name = name.chop.to_sym
         unless valid_transition?(state_name)
           raise TransitionError.new("Could not change state :#{state_name} from :#{state}")
         end
         @state = state_name
+        return
       end
+
+      super
+    end
+
+    private
+
+    def status_method_with_suffix?(method_name, suffix)
+      return false unless method_name.end_with?(suffix)
+      states.include?(method_name.chop.to_sym)
     end
 
     # Error for invalid transitions
