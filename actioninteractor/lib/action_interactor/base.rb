@@ -23,15 +23,16 @@ module ActionInteractor
   #   end
   # end
   class Base
-    attr_reader :payload, :errors, :results, :state
+    attr_reader :payload, :errors, :results, :state, :interactor_name
 
     # Initialize with payload
     # Errors and Results data and initial state will be set.
     def initialize(payload)
       @payload = payload
-      @errors = Errors.new
-      @results = Results.new
-      @state = ExecutionState.new
+      @errors = payload[:errors] || Errors.new
+      @results = payload[:results] || Results.new
+      @state = payload[:state] || ExecutionState.new
+      @interactor_name = payload[:interactor_name] || underscore(self.class.name)
     end
 
     # Execute the operation with given payload.
@@ -116,6 +117,16 @@ module ActionInteractor
       def execute!(payload)
         new(payload).tap(&:execute!)
       end
+    end
+
+    private
+
+    def underscore(name)
+      name.gsub(/::/, "__")
+          .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+          .gsub(/([a-z\d])([A-Z])/,'\1_\2')
+          .tr("-", "_")
+          .downcase
     end
   end
 
