@@ -38,6 +38,18 @@ class InheritanceTest < Test::Unit::TestCase
     assert_nothing_raised { RegistrationInteractor.execute(payload) }
   end
 
+  test "returns 'registration_interactor' as default interactor name" do
+    payload = { name: 'John'}
+    interactor = RegistrationInteractor.new(payload)
+    assert_equal('registration_interactor', interactor.interactor_name)
+  end
+
+  test "returns 'registration' as specified interactor name" do
+    payload = { name: 'John', interactor_name: 'registration' }
+    interactor = RegistrationInteractor.new(payload)
+    assert_equal('registration', interactor.interactor_name)
+  end
+
   test ".execute returns an RegistrationInteractor instance" do
     payload = { name: 'John'}
     interactor = RegistrationInteractor.execute(payload)
