@@ -29,9 +29,9 @@ module ActionInteractor
     # Errors and Results data and initial state will be set.
     def initialize(payload)
       @payload = payload
-      @errors = Errors.new
-      @results = Results.new
-      @state = ExecutionState.new
+      @errors = payload[:errors] || Errors.new
+      @results = payload[:results] || Results.new
+      @state = payload[:state] || ExecutionState.new
       @interactor_name = payload[:interactor_name] || underscore(self.class.name)
     end
 
