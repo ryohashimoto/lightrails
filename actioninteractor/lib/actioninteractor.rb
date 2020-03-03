@@ -8,4 +8,5 @@ module ActionInteractor
   autoload :Results, "action_interactor/results"
   autoload :State, "action_interactor/state"
   autoload :ExecutionState, "action_interactor/execution_state"
+  autoload :Composite, "action_interactor/composite"
 end
