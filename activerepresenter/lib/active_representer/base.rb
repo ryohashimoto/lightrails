@@ -20,7 +20,7 @@ module ActiveRepresenter
   #
   # attr_collection:
   #   Declare sub (containing) object array like has many association.
-  #   If sub object's representer is found, subobjects will be wrapped by it.
+  #   If sub object's representer is found, sub objects will be wrapped by it.
   #   See examples: AttrCollectionTest in test/attr_collection_test.
   class Base
     include ActiveModel::Model
