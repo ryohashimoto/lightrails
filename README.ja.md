@@ -149,4 +149,4 @@ $ bin/rails g representer activity
 
 ## ライセンス
 
-MIT License. Copyright 2018-2019 Ryo Hashimoto.
+MIT License. Copyright 2018-2020 Ryo Hashimoto.
