@@ -4,6 +4,24 @@ require "active_model"
 require "active_support"
 
 module ActiveRepresenter
+  # == Action \Representer \Base
+  #
+  # This is a base class for a representer (wrapped object).
+  # It wraps the original object as `wrapped` attribute and
+  # you can add custom methods to the class (using the decorator pattern).
+  #
+  # In addition, `attr_field` / `attr_collection` can be used for attributes.
+  #
+  # attr_field:
+  #   Declare additional field and type to the objects.
+  #   You can get / set field's value (converted to corresponding).
+  #   It uses ActiveModel::Attributes internally.
+  #   See examples: AttrFieldTest in test/attr_field_test.
+  #
+  # attr_collection:
+  #   Declare sub (containing) object array like has many association.
+  #   If sub object's representer is found, subobjects will be wrapped by it.
+  #   See examples: AttrCollectionTest in test/attr_collection_test.
   class Base
     include ActiveModel::Model
     include ActiveModel::Attributes
