@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module ActionInteractor
+  # == Action \Interactor \Execution \State
+  #
+  # State machine used in `ActionInteractor::Base`
   class ExecutionState < State
     # Define default states
     STATES = [

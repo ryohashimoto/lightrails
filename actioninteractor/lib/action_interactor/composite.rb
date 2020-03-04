@@ -2,13 +2,23 @@
 
 module ActionInteractor
   class Composite < Base
+    # == Action \Interactor \Composite
+    #
+    # An interactor class which containing multiple interactors
+    # using the composite pattern.
+    #
+    # It can be used for execute multiple operations and it will be
+    # marked as successful if all operations executed successful.
+    # (otherwise it will be marked as failure.)
     attr_reader :interactors
 
+    # Initialize with payload and an array for containing interactors.
     def initialize(payload)
       super
       @interactors = []
     end
 
+    # Execute containing interactors' `execute` method with given payload.
     def execute
       return if finished?
       return failure! if payload.nil?
@@ -21,10 +31,12 @@ module ActionInteractor
       successful!
     end
 
+    # Add an interactor to the interactors array.
     def add(interactor)
       interactors << interactor
     end
 
+    # Delete the interactor from the interactors array.
     def delete(interactor)
       interactors.delete(interactor)
     end

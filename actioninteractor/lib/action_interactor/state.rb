@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module ActionInteractor
+  # == Action \Interactor \State
+  #
+  # Simple state machine for general purpose.
+  # You can declare STATES / TRANSITIONS in subclasses for
+  # customizing the behavior.
+  # See also `ActionInteractor::ExecutionState`
   class State
     # Define default states
     STATES = [:initial, :finished]
@@ -17,6 +23,8 @@ module ActionInteractor
       @state = initial_state || default_state
     end
 
+    # Default initial state
+    # (You can override in subclasses.)
     def default_state
       :initial
     end
