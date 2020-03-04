@@ -109,9 +109,24 @@ $ bin/rails generate interactor registration
 
 ## Active Representer
 
-Add 'represented' models to your Rails application.
-It can be used with API responses.
-You can wrap hash-like objects (OpenStruct, Hashie::Mash etc.) like below.
+It provides a class for wrapping a object and used like Model.
+You can add custom methods to the class (using the decorator pattern).
+It can be used with API responses or simple decorators.
+
+In addition, `attr_field` / `attr_collection` can be used for attributes.
+
+### `attr_field`
+
+Declare additional field and type to the objects.
+You can get / set field's value (converted to corresponding).
+It uses `ActiveModel::Attributes` internally.
+
+### `attr_collection`
+
+Declare sub (containing) object array like has many association.
+If sub object's representer is found, sub objects will be wrapped by it.
+
+You can wrap hash-like objects (`OpenStruct`, `Hashie::Mash` etc.) like below.
 
 ```ruby
 class ActivityRepresenter < ApplicationRepresenter
@@ -143,7 +158,7 @@ activity.class # => ActivityRepresenter
 activity.created_on # => returns current date
 ```
 
-To create a representer, you can use the generator.
+To create a representer, you can use the Rails generator.
 
 ```
 $ bin/rails generate representer user

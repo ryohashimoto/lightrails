@@ -107,8 +107,22 @@ $ bin/rails generate interactor registration
 
 ## Active Representer
 
-Railsアプリケーションに、'代わりとなる'モデルレイヤー(リプレゼンター)を追加します。
-ハッシュのようなオブジェクト（OpenStruct, Hashie::Mashなど）を以下のようにラップすることができます。
+オブジェクトを包んで、モデルのように使用できるクラスを提供します。
+クラスに（デコレータパターンを使用して）独自のメソッドを追加することができます。
+APIのレスポンスに対してや、単純なデコレータとして使用することができるでしょう。
+
+これに加えて、属性として、`attr_field / attr_collection`を使用することができます。
+
+### `attr_field`
+
+追加のフィールドと型を宣言することができます。フィールドの値を取得したり、設定することができます。（宣言した型に変換されます。）内部的には、`ActiveModel::Attributes`を使用しています。
+
+### `attr_collection`
+
+has manyの関連のように、下位のオブジェクトの配列を宣言することができます。
+もし、下位のオブジェクトに対応するRepresenterが見つかった場合は、配列内の要素は、そのRepresenterでラップされます。
+
+以下は、ハッシュのようなオブジェクト（`OpenStruct`, `Hashie::Mash`など）をラップする例です。
 
 ```ruby
 class ActivityRepresenter < ApplicationRepresenter
@@ -140,7 +154,7 @@ activity.class # => ActivityRepresenter
 activity.created_on # => returns current date
 ```
 
-リプレゼンターを作成するために、ジェネレーターを使用することができます。
+Representerを作成するために、Railsのジェネレーターを使用することができます。
 
 ```
 $ bin/rails generate representer user
