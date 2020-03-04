@@ -1,5 +1,7 @@
 # 0.2.0
 
+## Action Interactor
+
 * Add `ActionInteractor::Composite` for executing multiple interactors. ([pull request](https://github.com/ryohashimoto/lightrails/pull/28))
 * Add `ActionInteractor::State` and `ActionInteractor::ExecutionState`, state machines for operation status.  ([pull request](https://github.com/ryohashimoto/lightrails/pull/26))
 * Rename to `successful?` and `failure!` methods (You can also use previous `success?` and `fail!` method names as aliases.) ([commit](https://github.com/ryohashimoto/lightrails/commit/e5a8dd0e4537fd734cb01574cca8fda82f53d433))
