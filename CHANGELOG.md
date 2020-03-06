@@ -1,5 +1,7 @@
 # 0.2.1
 
+* Generate documents by `rake rdoc` / Remove documents by 'rake clean_doc` ([PR](https://github.com/ryohashimoto/lightrails/pull/29))
+
 ## Active Representer
 
 * Update READMEs and comments
