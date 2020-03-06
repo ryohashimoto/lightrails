@@ -3,6 +3,8 @@
 require "bundler/setup"
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "sdoc"
+require "rdoc/task"
 
 desc "Build all gems (lightrails, actionfacade, actioninteractor etc.)."
 task :build_all do
@@ -54,4 +56,16 @@ FRAMEWORKS = %w(actionfacade actioninteractor activerepresenter)
     end
     fail("Errors in #{errors.join(', ')}") unless errors.empty?
   end
+end
+
+RDoc::Task.new do |rdoc|
+  rdoc.rdoc_dir = "doc"
+  rdoc.options << "--format=sdoc"
+  rdoc.options << "--exclude=\/(test|templates)\/"
+  rdoc.template = "rails"
+end
+
+desc "Clean up (remove) doc directory."
+task :clean_doc do
+  sh "rm -rf doc/"
 end
