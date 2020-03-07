@@ -39,6 +39,18 @@ class Mypage::IndexFacade < ApplicationFacade
   end
 end
 
+class MyPage::NotificationsFacade < ApplicationFacade
+  attr_reader :current_user
+
+  def initialize(payload)
+    @current_user = payload[:current_user]
+  end
+
+  def messages
+    @messages ||= current_user.messages.order(created_at: :desc).limit(10)
+  end
+end
+
 class MypageController < ApplicationController
   # #retrieveメソッドを使用するために必要
   include ActionFacade::Retrieval
@@ -47,6 +59,13 @@ class MypageController < ApplicationController
     facade = Mypage::IndexFacade.new(current_user: current_user)
     # インスタンス変数をアサインする
     retrieve(facade, :active_users, :messages)
+  end
+
+  def messages
+    # You can retrieve data from the guessed facade
+    # MyPageController#notifications => MyPage::NotificationsFacade
+    payload = { current_user: current_user }
+    retrieve_from(payload, :messages)
   end
 end
 ```
