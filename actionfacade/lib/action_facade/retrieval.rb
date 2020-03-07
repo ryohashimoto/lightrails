@@ -58,7 +58,7 @@ module ActionFacade
       klass_name = self.class.name
       if klass_name.end_with?("Controller")
         if defined?(params) && params[:action]
-          klass_name.delete_suffix("Controller") + params[:action].camelize + "Facade"
+          klass_name.delete_suffix("Controller") + "::#{params[:action].camelize}Facade"
         else
           klass_name.delete_suffix("Controller") + "Facade"
         end
