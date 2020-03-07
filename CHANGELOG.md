@@ -2,7 +2,7 @@
 
 ## Action Facade
 
-* Add `ActionFacvade#retrieve_from` for retrieve data from given payload (without initializing facades in controller) ([pull request](https://github.com/ryohashimoto/lightrails/pull/30))
+* Add `ActionFacade#retrieve_from` for retrieve data from given payload (without initializing facades in controller) ([pull request](https://github.com/ryohashimoto/lightrails/pull/30))
 
 # 0.2.1
 
