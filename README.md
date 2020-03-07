@@ -24,6 +24,10 @@ $ bin/rails generate lightrails:install
 
 Add a simple interface for obtaining multiple data used in a view.
 
+It uses Facade design pattern and take responsibility for preparing data outside of the controller.
+
+In the example below, by using `MyPage::IndexFacade` and `MyPage::NotificationsFacade`, Active Record methods will be called outside of the `MyPageController`.
+
 ```ruby
 class Mypage::IndexFacade < ApplicationFacade
   attr_reader :current_user
@@ -73,11 +77,17 @@ end
 ```
 
 ```erb
-<%# in View %>
+<%# in View (index.html.erb) %>
 
 <% @active_users.each do |user| %>
   ...
 <% end %>
+
+<% @messages.each do |user| %>
+  ...
+<% end %>
+
+<%# in View (messages.html.erb) %>
 
 <% @messages.each do |user| %>
   ...

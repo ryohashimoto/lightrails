@@ -20,7 +20,13 @@ $ bin/rails generate lightrails:install
 
 ## Action Facade
 
-コントローラで複数のデータを取得するためのシンプルなインターフェース（ファサード）を提供します。
+ビューで使用する複数のデータを取得するためのシンプルなインターフェースを提供します。
+
+Facadeデザインパターンを使用して、コントローラの外でデータを準備する責務を負います。
+
+以下の例では、`MyPage::IndexFacade`と`MyPage::NotificationsFacade`の2つのファサードクラスを使用して、`MyPageController`の外で、Active Recordのメソッドを呼び出しています。
+
+使い方はとてもシンプルですが、複雑なビジネスロジックを整理するにはとても有用です。
 
 ```ruby
 class Mypage::IndexFacade < ApplicationFacade
@@ -76,6 +82,12 @@ end
 <% @active_users.each do |user| %>
   ...
 <% end %>
+
+<% @messages.each do |user| %>
+  ...
+<% end %>
+
+<%# in View (messages.html.erb) %>
 
 <% @messages.each do |user| %>
   ...
