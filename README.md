@@ -24,7 +24,7 @@ $ bin/rails generate lightrails:install
 
 Add a simple interface for obtaining multiple data used in a view.
 
-It uses Facade design pattern and take responsibility for preparing data outside of the controller.
+It uses Facade design pattern and takes responsibility for preparing data outside of the controller.
 
 In the example below, by using `MyPage::IndexFacade` and `MyPage::NotificationsFacade`, Active Record methods will be called outside of the `MyPageController`.
 
@@ -104,7 +104,7 @@ $ bin/rails generate facade mypage/index
 
 Add standarized data processing units to your Rails application.
 
-It uses Command design pattern and usable for various business logic (ex: user registration) in Rails applications.
+It uses Command design pattern and will be usable for various business logic (ex: user registration) in Rails applications.
 
 In the example, by using `RegistrationInteractor`, user registration process will be executed outside of model and controller.
 
