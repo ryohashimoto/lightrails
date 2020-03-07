@@ -2,11 +2,17 @@ require "test/unit"
 require_relative "../lib/action_facade/base.rb"
 require_relative "../lib/action_facade/retrieval.rb"
 
-USER_DATA = [{ id: 1, name: "john" }]
+USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "bob" }]
 
 class UsersFacade < ActionFacade::Base
   def john
     USER_DATA.find { |user| user[:name] == "john" }
+  end
+end
+
+class AdminsShowFacade < ActionFacade::Base
+  def bob
+    USER_DATA.find { |user| user[:name] == "bob" }
   end
 end
 
@@ -21,8 +27,26 @@ class UsersController
     retrieve(facade, :john)
   end
 
-  def simple
-    retrieve_facade(:john)
+  def show_from
+    payload = {}
+    retrieve_from(payload, :john)
+  end
+end
+
+class AdminsController
+  include ActionFacade::Retrieval
+
+  attr_reader :bob
+
+  def show
+    payload = {}
+    retrieve_from(payload, :bob)
+  end
+
+  private
+
+  def params
+    { action: 'show' }
   end
 end
 
@@ -38,10 +62,17 @@ class RetrievalTest < Test::Unit::TestCase
     assert_equal(controller.john, { id: 1, name: "john" })
   end
 
-  test "@john is set after retrieve_facade(:john)" do
+  test "@john is set after retrieve_from(payload, :john)" do
     controller = UsersController.new
     assert_nil(controller.john)
-    controller.simple
+    controller.show_from
     assert_equal(controller.john, { id: 1, name: "john" })
+  end
+
+  test "@bob is set after retrieve_from(payload, :bob)" do
+    controller = AdminsController.new
+    assert_nil(controller.bob)
+    controller.show
+    assert_equal(controller.bob, { id: 2, name: "bob" })
   end
 end

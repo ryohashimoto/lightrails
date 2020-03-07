@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/string/inflections"
+
 module ActionFacade
   # == Action \Facade \Retrieval
   #
@@ -20,23 +22,23 @@ module ActionFacade
       end
     end
 
-    # Retrieve data from guessed facade
+    # Retrieve data from given payload
     #
     # If the class which includes the module is Rails controller,
-    # guessed facade name will be "Controller" is replaced by "Facade".
+    # guessed facade name will be "Controller" is replaced by the action name + "Facade".
     # If the class is not Rails controller, the name will be suffixed by "Facade".
+    #
+    # `payload` is the initialization parameter for the facade.
     #
     # `variable_names` are symbols for the method names in the facade and
     # they will be set as instance variables in the class that
     # includes the module.
-    #
-    # if the facade need to be initialize with parameters, use optional `payload` parameter.
-    def retrieve_facade(*variable_names, payload: {})
-      facade = guess_facade.new(payload)
+    def retrieve_from(payload, *variable_names)
+      facade = guess_facade
       if facade.nil?
         raise FacadeNotFoundError.new("Could not find Facade class #{guess_facade_name}.")
       end
-      retrieve(facade, *variable_names)
+      retrieve(facade.new(payload), *variable_names)
     end
 
     class FacadeNotFoundError < StandardError; end
@@ -46,7 +48,7 @@ module ActionFacade
     def guess_facade
       facade_name = guess_facade_name
       begin
-        Module.const_get(facade_name)
+        facade_name.constantize
       rescue NameError
         nil
       end
@@ -55,7 +57,11 @@ module ActionFacade
     def guess_facade_name
       klass_name = self.class.name
       if klass_name.end_with?("Controller")
-        klass_name.delete_suffix("Controller") + "Facade"
+        if defined?(params) && params[:action]
+          klass_name.delete_suffix("Controller") + params[:action].camelize + "Facade"
+        else
+          klass_name.delete_suffix("Controller") + "Facade"
+        end
       else
         klass_name + "Facade"
       end
