@@ -10,9 +10,11 @@ class UsersFacade < ActionFacade::Base
   end
 end
 
-class AdminsShowFacade < ActionFacade::Base
-  def bob
-    USER_DATA.find { |user| user[:name] == "bob" }
+module Admin
+  class ShowFacade < ActionFacade::Base
+    def bob
+      USER_DATA.find { |user| user[:name] == "bob" }
+    end
   end
 end
 
@@ -33,7 +35,7 @@ class UsersController
   end
 end
 
-class AdminsController
+class AdminController
   include ActionFacade::Retrieval
 
   attr_reader :bob
@@ -70,7 +72,7 @@ class RetrievalTest < Test::Unit::TestCase
   end
 
   test "@bob is set after retrieve_from(payload, :bob)" do
-    controller = AdminsController.new
+    controller = AdminController.new
     assert_nil(controller.bob)
     controller.show
     assert_equal(controller.bob, { id: 2, name: "bob" })
