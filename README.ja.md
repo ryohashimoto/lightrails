@@ -102,7 +102,11 @@ $ bin/rails generate facade mypage/index
 
 ## Action Interactor
 
-Railsアプリケーションに標準化されたサービスレイヤー（インタラクター）を追加します。
+Railsアプリケーションにデータを処理するユニットを追加します。
+
+Commandパターンを使用して、Railsアプリケーションで様々なビジネスロジック（ユーザー登録など）に使用することができます。
+
+以下の例では、`RegistrationInteractor`を使用することで、ユーザーの登録処理を、モデルやコントローラの外で実行しています。
 
 ```ruby
 class User

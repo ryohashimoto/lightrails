@@ -104,6 +104,10 @@ $ bin/rails generate facade mypage/index
 
 Add standarized data processing units to your Rails application.
 
+It uses Command design pattern and usable for various business logic (ex: user registration) in Rails applications.
+
+In the example, by using `RegistrationInteractor`, user registration process will be executed outside of model and controller.
+
 ```ruby
 class User
   attr_accessor :name
@@ -123,7 +127,6 @@ class RegistrationInteractor < ApplicationInteractor
   end
 end
 
-interactor = RegistrationInteractor.execute(name: "John")
 interactor.successful?   # => true
 interactor.finished?  # => true
 user = interactor.results[:user]
