@@ -62,7 +62,7 @@ class MypageController < ApplicationController
   end
 
   def messages
-    # You can retrieve data from the guessed facade
+    # コントローラとアクション名前から推測されたFacadeからデータを取得することが可能
     # MyPageController#notifications => MyPage::NotificationsFacade
     payload = { current_user: current_user }
     retrieve_from(payload, :messages)
