@@ -1,3 +1,9 @@
+# 0.2.2
+
+## Action Facade
+
+* Add `ActionFacvade#retrieve_from` for retrieve data from given payload (without initializing facades in controller) ([pull request](https://github.com/ryohashimoto/lightrails/pull/30))
+
 # 0.2.1
 
 * Generate documents by `rake rdoc` / Remove documents by `rake clean_doc` ([pull request](https://github.com/ryohashimoto/lightrails/pull/29))
