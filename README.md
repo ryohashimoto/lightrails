@@ -67,7 +67,7 @@ class MypageController < ApplicationController
     retrieve(facade, :active_users, :messages)
   end
 
-  def messages
+  def notifications
     # You can retrieve data from the guessed facade
     # MyPageController#notifications => MyPage::NotificationsFacade
     payload = { current_user: current_user }

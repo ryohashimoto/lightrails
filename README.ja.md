@@ -67,7 +67,7 @@ class MypageController < ApplicationController
     retrieve(facade, :active_users, :messages)
   end
 
-  def messages
+  def notifications
     # コントローラとアクション名前から推測されたFacadeからデータを取得することが可能
     # MyPageController#notifications => MyPage::NotificationsFacade
     payload = { current_user: current_user }
