@@ -1,6 +1,4 @@
-require "test/unit"
-require_relative "../lib/action_facade/base.rb"
-require_relative "../lib/action_facade/retrieval.rb"
+require_relative "./test_helper"
 
 USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "bob" }]
 
@@ -35,23 +33,6 @@ class UsersController
   end
 end
 
-class AdminController
-  include ActionFacade::Retrieval
-
-  attr_reader :bob
-
-  def show
-    payload = {}
-    retrieve_from(payload, :bob)
-  end
-
-  private
-
-  def params
-    { action: 'show' }
-  end
-end
-
 class RetrievalTest < Test::Unit::TestCase
   test ".show does not raise error" do
     assert_nothing_raised { UsersController.new.show }
@@ -69,12 +50,5 @@ class RetrievalTest < Test::Unit::TestCase
     assert_nil(controller.john)
     controller.show_from
     assert_equal(controller.john, { id: 1, name: "john" })
-  end
-
-  test "@bob is set after retrieve_from(payload, :bob)" do
-    controller = AdminController.new
-    assert_nil(controller.bob)
-    controller.show
-    assert_equal(controller.bob, { id: 2, name: "bob" })
   end
 end
