@@ -1,5 +1,4 @@
-require "test/unit"
-require_relative "../lib/actionfacade"
+require_relative "./test_helper"
 
 class UserFacade < ActionFacade::Base
   USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "taro" }]

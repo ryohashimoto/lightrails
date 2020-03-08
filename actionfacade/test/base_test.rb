@@ -1,5 +1,4 @@
-require "test/unit"
-require_relative "../lib/actionfacade"
+require_relative "./test_helper"
 
 class BaseTest < Test::Unit::TestCase
   test ".new does not raise error" do
