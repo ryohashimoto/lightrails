@@ -103,6 +103,8 @@ module ActiveRepresenter
       end
     end
 
+    singleton_class.send(:alias_method, :attr_many, :attr_collection)
+
     def self.one_names
       ones.keys
     end

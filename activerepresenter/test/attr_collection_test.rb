@@ -11,7 +11,7 @@ end
 
 class UserRepresenter < ActiveRepresenter::Base
   attr_collection :activities
-  attr_collection :notifications
+  attr_many :notifications
 
   def full_name
     "#{first_name} #{last_name}"
