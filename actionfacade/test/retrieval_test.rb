@@ -27,6 +27,18 @@ class UsersController
     retrieve(facade, :john)
   end
 
+  def show_symbol
+    retrieve(:john)
+  end
+
+  def show_string
+    retrieve("john")
+  end
+
+  def show_hash
+    retrieve({}, :john)
+  end
+
   def show_from
     payload = {}
     retrieve_from(payload, :john)
@@ -42,6 +54,31 @@ class RetrievalTest < Test::Unit::TestCase
     controller = UsersController.new
     assert_nil(controller.john)
     controller.show
+    assert_equal(controller.john, { id: 1, name: "john" })
+  end
+
+  test "raised exception when retrieve(:john)" do
+    controller = UsersController.new
+    assert_nil(controller.john)
+    error = assert_raises ArgumentError do
+      controller.show_symbol
+    end
+    assert_equal(error.message, "Can't call the method with Symbol if params is undefined.")
+  end
+
+  test "raised exception when retrieve(\"john\")" do
+    controller = UsersController.new
+    assert_nil(controller.john)
+    error = assert_raises ArgumentError do
+      controller.show_string
+    end
+    assert_equal(error.message, "Can't call the method with String if params is undefined.")
+  end
+
+  test "@john is set after retrieve({}, :john)" do
+    controller = UsersController.new
+    assert_nil(controller.john)
+    controller.show_hash
     assert_equal(controller.john, { id: 1, name: "john" })
   end
 
