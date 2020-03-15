@@ -1,3 +1,10 @@
+# 0.2.3
+
+## Active Representer
+
+* Add `attr_one` for single associated object and `attr_collection` is renamed to `attr_many`.
+[pull request](https://github.com/ryohashimoto/lightrails/pull/33)
+
 # 0.2.2
 
 ## Action Facade
