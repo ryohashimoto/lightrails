@@ -20,7 +20,19 @@ class HomeController < ActionController::Base
   include ActionFacade::Retrieval
 
   def index
-    retrieve_from({}, :all_users)
+    case params[:retrieve]
+    when "facade"
+      facade = Home::IndexFacade.new
+      retrieve(facade, :all_users)
+    when "string"
+      retrieve("all_users")
+    when "symbol"
+      retrieve(:all_users)
+    when "hash"
+      retrieve({}, :all_users)
+    else
+      retrieve_from({}, :all_users)
+    end
     render plain: @all_users
   end
 end
@@ -34,7 +46,27 @@ class RailsApp::RetrievalTest < Test::Unit::TestCase
 
   test "@all_users is set after retrieve_from({}, :all_users)" do
     get "/"
-    assert_equal(last_response.body, USER_DATA.to_s)
+    assert_equal(last_response.body, RailsApp::USER_DATA.to_s)
+  end
+
+  test "@all_users is set after retrieve(facade, :all_users)" do
+    get "/", params: { retrieve: "facade" }
+    assert_equal(last_response.body, RailsApp::USER_DATA.to_s)
+  end
+
+  test "@all_users is set after retrieve(:all_users)" do
+    get "/", params: { retrieve: "symbol" }
+    assert_equal(last_response.body, RailsApp::USER_DATA.to_s)
+  end
+
+  test "@all_users is set after retrieve(\"all_users\")" do
+    get "/", params: { retrieve: "string" }
+    assert_equal(last_response.body, RailsApp::USER_DATA.to_s)
+  end
+
+  test "@all_users is set after retrieve({}, :all_users)" do
+    get "/", params: { retrieve: "hash" }
+    assert_equal(last_response.body, RailsApp::USER_DATA.to_s)
   end
 
   private
