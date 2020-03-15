@@ -153,10 +153,15 @@ Declare additional field and type to the objects.
 You can get / set field's value (converted to corresponding).
 It uses `ActiveModel::Attributes` internally.
 
-### `attr_collection`
+### `attr_one`
 
-Declare sub (containing) object array like has many association.
-If sub object's representer is found, sub objects will be wrapped by it.
+Declare an associated object like has one association.
+If a representer for the object is found, the object will be wrapped by the representer.
+
+### `attr_mamy`
+
+Declare associated objects like has many association.
+If a representer for the objects is found, the objects will be wrapped by the representer.
 
 You can wrap hash-like objects (`OpenStruct`, `Hashie::Mash` etc.) like below.
 

@@ -18,9 +18,14 @@ module ActiveRepresenter
   #   It uses ActiveModel::Attributes internally.
   #   See examples: AttrFieldTest in test/attr_field_test.
   #
-  # attr_collection:
-  #   Declare sub (containing) object array like has many association.
-  #   If sub object's representer is found, sub objects will be wrapped by it.
+  # attr_one:
+  #   Declare an associated object like has one association.
+  #   If a representer for the object is found, the object will be wrapped by the representer.
+  #   See examples: AttrOneTest in test/attr_one_test.
+  #
+  # attr_many:
+  #   Declare associated objects like has many association.
+  #   If a representer for the objects is found, the objects will be wrapped by the representer.
   #   See examples: AttrCollectionTest in test/attr_collection_test.
   class Base
     include ActiveModel::Model
