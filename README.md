@@ -145,7 +145,7 @@ It provides a class for wrapping a object and used like Model.
 You can add custom methods to the class (using the decorator pattern).
 It can be used with API responses or simple decorators.
 
-In addition, `attr_field` / `attr_collection` can be used for attributes.
+In addition, `attr_field` / `attr_one` / `attr_many` can be used for attributes.
 
 ### `attr_field`
 

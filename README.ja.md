@@ -146,7 +146,7 @@ $ bin/rails generate interactor registration
 クラスに（デコレータパターンを使用して）独自のメソッドを追加することができます。
 APIのレスポンスに対してや、単純なデコレータとして使用することができるでしょう。
 
-これに加えて、属性として、`attr_field / attr_collection`を使用することができます。
+これに加えて、属性として、`attr_field` / `attr_one` / `attr_many`を使用することができます。
 
 ### `attr_field`
 
