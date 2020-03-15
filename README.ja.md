@@ -157,7 +157,7 @@ APIのレスポンスに対してや、単純なデコレータとして使用�
 has oneの関連のように、関連するオブジェクトを宣言することができます。
 もし、オブジェクトに対応するRepresenterが見つかった場合は、オブジェクトは、そのRepresenterでラップされます。
 
-### `attr_collection`
+### `attr_many`
 
 has manyの関連のように、関連するオブジェクトの配列を宣言することができます。
 もし、オブジェクトに対応するRepresenterが見つかった場合は、配列内のオブジェクトは、そのRepresenterでラップされます。
@@ -174,7 +174,7 @@ end
 class UserRepresenter < ApplicationRepresenter
   attr_field :first_name, :string
   attr_field :last_name, :string
-  attr_collection :activities
+  attr_many :activities
 
   def full_name
     "#{first_name} #{last_name}"

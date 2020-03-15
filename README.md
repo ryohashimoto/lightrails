@@ -175,7 +175,7 @@ end
 class UserRepresenter < ApplicationRepresenter
   attr_field :first_name, :string
   attr_field :last_name, :string
-  attr_collection :activities
+  attr_many :activities
 
   def full_name
     "#{first_name} #{last_name}"
