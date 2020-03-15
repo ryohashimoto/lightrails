@@ -3,13 +3,15 @@
 require_relative "../test_helper"
 require_relative "./test_app"
 
-USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "bob" }]
+module RailsApp
+  USER_DATA = [{ id: 1, name: "john" }, { id: 2, name: "bob" }]
+end
 
 module Home; end
 
 class Home::IndexFacade < ActionFacade::Base
   def all_users
-    USER_DATA
+    RailsApp::USER_DATA
   end
 end
 

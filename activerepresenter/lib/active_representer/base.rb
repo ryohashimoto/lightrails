@@ -78,7 +78,7 @@ module ActiveRepresenter
       begin
         representer = representer_name.constantize
         ones[name.to_sym] = representer
-      rescue NameError => e
+      rescue NameError
         ones[name.to_sym] = nil
       end
 
@@ -94,7 +94,7 @@ module ActiveRepresenter
       begin
         representer = representer_name.constantize
         collections[name.to_sym] = representer
-      rescue NameError => e
+      rescue NameError
         collections[name.to_sym] = nil
       end
 
