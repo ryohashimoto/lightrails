@@ -42,6 +42,7 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
     builder (3.2.4)
+    byebug (11.1.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     erubi (1.9.0)
@@ -86,6 +87,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   lightrails!
   sdoc (~> 1.1)
   test-unit (>= 3.3)
