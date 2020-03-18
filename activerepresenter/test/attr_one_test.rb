@@ -31,4 +31,14 @@ class AttrOneTest < Test::Unit::TestCase
     profile = representer.profile
     assert_equal(profile.email_sent_on, Date.today)
   end
+
+  test "representer class include profile in one_names array" do
+    one_names = UserRepresenter.one_names
+    assert_equal(one_names, [:profile])
+  end
+
+  test "base class doesn't include profile in one_names array" do
+    one_names = ActiveRepresenter::Base.one_names
+    assert_equal(one_names, [])
+  end
 end

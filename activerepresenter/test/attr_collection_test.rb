@@ -71,4 +71,14 @@ class AttrCollectionTest < Test::Unit::TestCase
     notification = representer.notifications.first
     assert_instance_of(OpenStruct, notification)
   end
+
+  test "representer class include :activities and :notifications in collection_names array" do
+    collection_names = UserRepresenter.collection_names
+    assert_equal(collection_names, [:activities, :notifications])
+  end
+
+  test "base class doesn't have any entries in collection_names array" do
+    collection_names = ActiveRepresenter::Base.collection_names
+    assert_equal(collection_names, [])
+  end
 end

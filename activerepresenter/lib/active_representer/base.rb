@@ -37,6 +37,11 @@ module ActiveRepresenter
 
     delegate_missing_to :wrapped
 
+    def self.inherited(subclass)
+      subclass.ones = {}
+      subclass.collections = {}
+    end
+
     def self.wrap(wrapped)
       instance = new
       instance.wrapped = wrapped
