@@ -73,7 +73,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
     rdoc (6.2.1)
-    sdoc (1.1.0)
+    sdoc (2.0.2)
       rdoc (>= 5.0)
     test-unit (3.3.6)
       power_assert
@@ -89,7 +89,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   lightrails!
-  sdoc (~> 1.1)
+  sdoc (~> 2.0)
   test-unit (>= 3.3)
 
 BUNDLED WITH
