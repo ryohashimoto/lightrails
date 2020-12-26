@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.test_files  = s.files.grep(/^test/)
 
   s.add_dependency "bundler", ">= 1.3"
-  s.add_dependency "activemodel", ">= 5.2", "< 6.1"
-  s.add_dependency "activesupport", ">= 5.2", "< 6.1"
+  s.add_dependency "activemodel", ">= 5.2", "< 6.2"
+  s.add_dependency "activesupport", ">= 5.2", "< 6.2"
   s.add_development_dependency "rake", ">= 12.3.3"
   s.add_development_dependency "test-unit", ">= 3.3"
 end
