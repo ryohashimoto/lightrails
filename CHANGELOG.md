@@ -1,3 +1,9 @@
+# 0.2.4
+
+* Support Ruby on Rails 6.1
+* Allow multi type first variable to `#retrieve` method
+* Bugfix: set class attributes when inherited
+
 # 0.2.3
 
 ## Active Representer
