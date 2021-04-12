@@ -32,16 +32,14 @@ end
 
 class CompositeTest < Test::Unit::TestCase
   test "initialized successfully" do
-    payload = {}
-    interactor = ActionInteractor::Composite.new(payload)
+    interactor = ActionInteractor::Composite.new
     assert_equal(interactor.success?, false)
     assert_equal(interactor.finished?, false)
     assert_equal(interactor.errors.empty?, true)
   end
 
   test "add interactors" do
-    payload = {}
-    chief_interactor = ChiefInteractor.new(payload)
+    chief_interactor = ChiefInteractor.new
     cook_interactor = CookInteractor.new(interactor_name: "cook")
     arrange_interactor = ArrangeInteractor.new(interactor_name: "arrange")
     chief_interactor.add(cook_interactor)
@@ -51,8 +49,7 @@ class CompositeTest < Test::Unit::TestCase
   end
 
   test "remove interactor" do
-    payload = {}
-    chief_interactor = ChiefInteractor.new(payload)
+    chief_interactor = ChiefInteractor.new
     cook_interactor = CookInteractor.new(interactor_name: "cook")
     arrange_interactor = ArrangeInteractor.new(interactor_name: "arrange")
     chief_interactor.add(cook_interactor)
@@ -63,8 +60,7 @@ class CompositeTest < Test::Unit::TestCase
   end
 
   test "successful in executing all interactors" do
-    payload = {}
-    chief_interactor = ChiefInteractor.new(payload)
+    chief_interactor = ChiefInteractor.new
     cook_interactor = CookInteractor.new(interactor_name: "cook")
     arrange_interactor = ArrangeInteractor.new(interactor_name: "arrange")
     chief_interactor.add(cook_interactor)
@@ -76,8 +72,7 @@ class CompositeTest < Test::Unit::TestCase
   end
 
   test "failure in executing the last interactor" do
-    payload = {}
-    chief_interactor = ChiefInteractor.new(payload)
+    chief_interactor = ChiefInteractor.new
     cook_interactor = CookInteractor.new(interactor_name: "cook")
     arrange_interactor = ArrangeInteractor.new(interactor_name: "arrange", broken_dish: true)
     chief_interactor.add(cook_interactor)

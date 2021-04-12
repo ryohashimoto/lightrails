@@ -27,7 +27,7 @@ module ActionInteractor
 
     # Initialize with payload
     # Errors and Results data and initial state will be set.
-    def initialize(payload)
+    def initialize(payload = {})
       @payload = payload
       @errors = payload[:errors] || Errors.new
       @results = payload[:results] || Results.new
@@ -40,7 +40,7 @@ module ActionInteractor
     def execute
       # if the interactor already finished execution, do nothing.
       return if finished?
-      # if contract is not satisfied= (ex: payload is empty), mark as failure.
+      # if contract is not satisfied= (ex: payload is nil), mark as failure.
       return failure! if payload.nil?
       # (Implement some codes for the operation.)
 
@@ -108,13 +108,13 @@ module ActionInteractor
 
     class << self
       # Execute the operation with given payload.
-      def execute(payload)
+      def execute(payload = {})
         new(payload).tap(&:execute)
       end
 
       # Execute the operation with given payload.
       # If there are some errors, ActionInteractor::ExeuctionError will be raised.
-      def execute!(payload)
+      def execute!(payload = {})
         new(payload).tap(&:execute!)
       end
     end

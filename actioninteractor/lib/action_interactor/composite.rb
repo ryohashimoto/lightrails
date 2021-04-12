@@ -13,7 +13,7 @@ module ActionInteractor
     attr_reader :interactors
 
     # Initialize with payload and an array for containing interactors.
-    def initialize(payload)
+    def initialize(payload = {})
       super
       @interactors = []
     end
