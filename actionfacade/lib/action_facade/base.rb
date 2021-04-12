@@ -30,7 +30,7 @@ module ActionFacade
     attr_reader :payload
 
     # Initialize with payload
-    def initialize(payload)
+    def initialize(payload = {})
       @payload = payload
     end
   end
