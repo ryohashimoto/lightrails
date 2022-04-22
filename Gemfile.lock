@@ -58,6 +58,8 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     power_assert (2.0.0)
+    psych (4.0.3)
+      stringio
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -74,9 +76,11 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rake (13.0.3)
-    rdoc (6.3.1)
-    sdoc (2.2.0)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
+    sdoc (2.3.2)
       rdoc (>= 5.0)
+    stringio (3.0.1)
     test-unit (3.4.4)
       power_assert
     thor (1.1.0)
@@ -90,7 +94,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   lightrails!
-  sdoc (~> 2.2)
+  sdoc (~> 2.3)
   test-unit (>= 3.3)
 
 BUNDLED WITH
