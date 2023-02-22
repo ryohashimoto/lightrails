@@ -1,3 +1,8 @@
+# 0.2.7
+- Relax RubyGems version to >= 1.8.11
+- Bugfix: Fix dependencies in gemspec files
+- GitHub Actions Matrix tests with Ruby and Rails versions
+
 # 0.2.6
 - Support Ruby on Rails 7.0
 - Drop support Ruby on Rails 5.2
