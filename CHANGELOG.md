@@ -1,3 +1,8 @@
+# 0.2.6
+- Support Ruby on Rails 7.0
+- Drop support Ruby on Rails 5.2
+- Require Ruby >= 2.7.0, RubyGems >= 3.3.13
+
 # 0.2.5
 
 - Set interactor default payload to `{}`
