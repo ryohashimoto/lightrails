@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = "Lightrails is a utility library including Action Facade, Action Interactor, Active Representer etc. It aims to provide more modular layers for Ruby on Rails applications."
 
   s.required_ruby_version     = ">= 2.7.0"
-  s.required_rubygems_version = ">= 3.3.13"
+  s.required_rubygems_version = ">= 1.8.11"
 
   s.license       = "MIT"
 
