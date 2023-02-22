@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "Action Facade provides a simple interface for data required by view / controller (part of Lightrails)."
   s.description = "Action Facade provides a simple interface for data required by view / controller."
 
-  s.required_ruby_version     = ">= 2.4.0"
+  s.required_ruby_version     = ">= 2.7.0"
   s.required_rubygems_version = ">= 1.8.11"
 
   s.license       = "MIT"
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.test_files  = s.files.grep(/^test/)
 
   s.add_dependency "bundler", ">= 1.3"
-  s.add_dependency "activesupport", ">= 5.2"
+  s.add_dependency "activesupport", ">= 6.0"
   s.add_development_dependency "rake", ">= 12.3.3"
   s.add_development_dependency "test-unit", ">= 3.3"
 end

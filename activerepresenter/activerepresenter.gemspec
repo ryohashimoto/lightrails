@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "Active Representer provides model objects by decorating objects (part of Lightrails)."
   s.description = "Active Representer provides model objects for web applications by decorating objects."
 
-  s.required_ruby_version     = ">= 2.4.0"
+  s.required_ruby_version     = ">= 2.7.0"
   s.required_rubygems_version = ">= 1.8.11"
 
   s.license       = "MIT"
@@ -24,8 +24,8 @@ Gem::Specification.new do |s|
   s.test_files  = s.files.grep(/^test/)
 
   s.add_dependency "bundler", ">= 1.3"
-  s.add_dependency "activemodel", ">= 5.2", "< 6.2"
-  s.add_dependency "activesupport", ">= 5.2", "< 6.2"
+  s.add_dependency "activemodel", ">= 6.0", "< 7.1"
+  s.add_dependency "activesupport", ">= 6.0", "< 7.1"
   s.add_development_dependency "rake", ">= 12.3.3"
   s.add_development_dependency "test-unit", ">= 3.3"
 end
