@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.summary     = "Utility library including Action Facade, Action Interactor, Active Representer etc. (for Ruby on Rails)"
   s.description = "Lightrails is a utility library including Action Facade, Action Interactor, Active Representer etc. It aims to provide more modular layers for Ruby on Rails applications."
 
-  s.required_ruby_version     = ">= 2.4.0"
-  s.required_rubygems_version = ">= 1.8.11"
+  s.required_ruby_version     = ">= 2.7.0"
+  s.required_rubygems_version = ">= 3.3.13"
 
   s.license       = "MIT"
 
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.files       = Dir["lib/**/*", "test/**/*", "LICENSE", "README.md", "RELEASE_DATE", "VERSION"]
   s.test_files  = s.files.grep(/^test/)
 
-  s.add_dependency "railties", ">= 5.2", "< 6.2"
+  s.add_dependency "railties", ">= 6.0", "< 7.1"
   s.add_dependency "actionfacade",  version
   s.add_dependency "actioninteractor",  version
   s.add_dependency "activerepresenter", version
