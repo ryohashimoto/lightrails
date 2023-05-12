@@ -81,7 +81,7 @@ GEM
     sdoc (2.6.1)
       rdoc (>= 5.0)
     stringio (3.0.5)
-    test-unit (3.5.7)
+    test-unit (3.5.8)
       power_assert
     thor (1.2.1)
     tzinfo (2.0.6)
